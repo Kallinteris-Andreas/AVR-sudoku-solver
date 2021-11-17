@@ -8,6 +8,8 @@
 ; Device  : ATmega16 (WARNING: If another device is used, some registers may differ a bit)
 ; IDE used: Microchip Studio 7
 ; CPU freq: 10 MHz (If changed, things such as timer init. value and UBRR for the seial port should change too)
+;
+; Hello Manolis, i accepted your invite, cloned the repository and this is a change.
 */
 
 #include <avr/io.h>
