@@ -1,0 +1,35 @@
+#250 //Wait for the initializations to be done
+
+$log TCNT1L //The USART output is redirected to TCNT1L 
+
+$startlog simulation.log o
+
+// Send the command N123<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+#200000
+$stoplog
+$break
