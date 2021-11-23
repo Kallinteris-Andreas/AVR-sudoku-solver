@@ -432,11 +432,9 @@ ISR (USART_RXC_vect){
 
 /************************************************************************/
 /* TODO: Pseudocode for the backtracking algorithm implementation       */
+/* TODO: Decide if table lookup (said in classroom) is needed for acceleration */
 /************************************************************************/
-uint8_t solve_sudoku(){
-	
-	// Add support for LED updating (increment num_cnt and updateLED)
-	
+uint8_t solve_sudoku(){	
 	// Add somewhere a condition to stop solving
 	for(uint8_t i=0; i<9; i++){
 		for(uint8_t j=0; j<9; j++){
@@ -444,11 +442,15 @@ uint8_t solve_sudoku(){
 				for(uint8_t value=1; value<=9; value++){
 					if((!(exists_in_row(i, value))) && (!(exists_in_column(j, value))) && (!(exists_in_box(i, j, value)))){
 						grid[i][j] = value;
+						num_cnt++; // Increment
+						updateLEDS();
 						if(solve_sudoku()){
 							return 1;
 						}
 						else{
 						grid[i][j] = 0;
+						num_cnt--; // Decrement
+						updateLEDS();
 						}
 					}
 				}
@@ -476,6 +478,11 @@ void init(void){
 	
 	/* */
 	args_counter = 0;
+	received_X = 0x00;
+	received_Y = 0x00;
+	
+	sent_counter_X = 0;
+	sent_counter_Y = 0;
 	
 	/* Configure and initialize PortA */
 	portA_init();
@@ -486,6 +493,7 @@ void init(void){
 	/* Initialize the serial port */
 	USART_init(MYUBRR);
 }
+
 
 /************************************************************************/
 /* main function                                                        */
