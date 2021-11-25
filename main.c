@@ -5,7 +5,7 @@
 ;
 ; Semester project - Sudoku on Atmel AVR
 ; Students             : Lioudakis Emmanouil, 2018030020
-;                      : Chamalakis Thomas - Stylianos, 2018  ************************************ /* TODO: Update AM 
+;                      : Kallinteris Andreas, 201   ************************************ /* TODO: Update AM 
 ; Device in simulation : ATmega16 (WARNING: If another device is used, some registers may differ a bit)
 ; Device in STK500     : ATmega16L - fully compatible with ATmega16
 ; IDE used             : Microchip Studio 7
@@ -57,6 +57,7 @@
 /* updateLEDS                                                           */
 /* MACRO to show the solving progress to LEDS7-0                        */
 /*    (LEDS on STK are Common Anode)                                    */
+/* TODO 25/11: MAY CONVERT TO LOOKUP TABLE, as prof. Dollas suggested   */
 /************************************************************************/
 #define updateLEDS(completed_cells) \
 { \
@@ -435,7 +436,7 @@ ISR (USART_RXC_vect){
 /* TODO: Decide if table lookup (said in classroom) is needed for acceleration */
 /************************************************************************/
 uint8_t solve_sudoku(){	
-	// Add somewhere a condition to stop solving
+	// TODO: Add somewhere a condition to stop solving (for the B command)
 	for(uint8_t i=0; i<9; i++){
 		for(uint8_t j=0; j<9; j++){
 			if(grid[i][j] == 0){
@@ -500,7 +501,7 @@ void init(void){
 /* The main part of the program                                         */
 /************************************************************************/
 int main(void){	
-	/* Initialize global variables, ports, counter0 and serial port */
+	/* Initialize global variables, ports and serial port */
 	init();
 	
 	/* Enable global interrupts */
@@ -508,7 +509,7 @@ int main(void){
 	
 	/* Do an infinite loop */
 	while (1) { 
-		if(start_game == 1 && break_game == 0){
+		if(start_game == 1 && break_game == 0){ //This will not stop solving if receiving "B"
 		
 			if(solve_sudoku()){
 				send_done();
@@ -516,7 +517,7 @@ int main(void){
 			
 			
 			
-			// if a debug character is received, the solving will stop
+			// if a B command is received, the solving will stop
 			
 			// TODO: When ISR returns from B, what will happen? We want it to stop
 		}
