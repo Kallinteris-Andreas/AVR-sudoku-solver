@@ -4,8 +4,8 @@
 ; Course: HRY411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22
 ;
 ; Semester project - Sudoku on Atmel AVR
-; Students             : Lioudakis Emmanouil, 2018030020
-;                      : Kallinteris Andreas, 201   ************************************ /* TODO: Update AM 
+; Students             : Kallinteris Andreas, 2017030066
+;                      : Lioudakis Emmanouil, 2018030020 
 ; Device in simulation : ATmega16 (WARNING: If another device is used, some registers may differ a bit)
 ; Device in STK500     : ATmega16L - fully compatible with ATmega16
 ; IDE used             : Microchip Studio 7
@@ -54,46 +54,6 @@
 
 
 /************************************************************************/
-/* updateLEDS                                                           */
-/* MACRO to show the solving progress to LEDS7-0                        */
-/*    (LEDS on STK are Common Anode)                                    */
-/* TODO 25/11: MAY CONVERT TO LOOKUP TABLE, as prof. Dollas suggested   */
-/************************************************************************/
-#define updateLEDS(completed_cells) \
-{ \
-	/* Use switch-case, as suggested in AVR4027 Section 4.4 (TODO: needs optimization flag -O3) */ \
-	switch(completed_cells/10){ \
-		case 0: \
-			PORTA = 0xFF; /* 0-9 completed -> All LEDS off */ \
-			break; \
-		case 1: \
-			PORTA = 0xFE; /* 10+ completed -> LED0   */ \
-			break; \
-		case 2: \
-			PORTA = 0xFC; /* 20+ completed -> LED1-0 */ \
-			break; \
-		case 3: \
-			PORTA = 0xF8; /* 30+ completed -> LED2-0 */ \
-			break; \
-		case 4: \
-			PORTA = 0xF0; /* 40+ completed -> LED3-0 */ \
-			break; \
-		case 5: \
-			PORTA = 0xE0; /* 50+ completed -> LED4-0 */ \
-			break; \
-		case 6: \
-			PORTA = 0xC0; /* 60+ completed -> LED5-0 */ \
-			break; \
-		case 7: \
-			PORTA = 0x80; /* 70+ completed -> LED6-0 */ \
-			break; \
-		case 8: \
-			PORTA = 0x00; /* 80+ completed -> LED7-0 */ \
-			break; \
-	} \
-}
-
-/************************************************************************/
 /* Global variables                                                     */
 /************************************************************************/
 volatile uint8_t flag_reg_A;  /* -flag_reg_A bit0 shows if we have received A
@@ -127,17 +87,20 @@ volatile uint8_t break_game; /* Used for the B command */ /*Maybe only one of th
 /* A global variable to keep the sudoku in SRAM */
 volatile uint8_t grid[9][9];
 
-//volatile uint8_t value_to_send; /* Used to send back the grid contents in command D */ /*TODO: May BE USED for more commands */
-
 volatile uint8_t sent_counter_X; /* Used for commands S and T, to send the cells back to the computer */
 volatile uint8_t sent_counter_Y;
 
 // volatile uint8_t start_sending; /* Flag to start sending, in case of S command */ /* FOR NOW, not needed */
+volatile uint8_t led_bar[82];
+
+volatile uint8_t break_transmission; /* Flag to stop transmitting data in case of B command */
+/* TODO 26/11: Merge the "break" flags for game and transmission into one */
+
 
 /************************************************************************/
 /* DEFINE FUNCTIONS (like a C header file)                              */
 /************************************************************************/
-// void function();
+// void function_name(void);
 
 /************************************************************************/
 /* USART_init (C equivalent of usart_init in Lab3)                      */
@@ -203,7 +166,7 @@ void USART_Transmit(unsigned char data){
 	
 	/* Ready to transmit: Put the data into buffer, send the data */
 	//UDR = data; 
-	TCNT1L = data; /* instead of "UDR = data;" for testing */
+	TCNT0 = data; /* instead of "UDR = data;" for testing */
 	
 }
 
@@ -236,6 +199,8 @@ void send_cell (uint8_t bcd_x, uint8_t bcd_y){
 	flag_reg_B = 0x00;
 	
 	/* Find the value, and convert it to ASCII */
+	/* Subtract 1 from x and y, because in the assignment X and Y start from 1, but
+	     in C, array positions start from 0. */
 	uint8_t value_to_send = grid[bcd_x - 1][bcd_y - 1] + 0x30;
 	
 	/* Send the cell data */
@@ -295,7 +260,7 @@ ISR (USART_RXC_vect){
 		flag_reg_A = flag_reg_A | 0x02;
 	}
 	else if (received_char == 0x43){   //C
-		/* If "C", flag and return */  /* TODO: Clear maybe will be done after LF */
+		/* If "C", flag and return */  
 		flag_reg_A = flag_reg_A | 0x04;
 		clear();
 	}
@@ -350,7 +315,6 @@ ISR (USART_RXC_vect){
 		}
 		else if(flag_reg_A == 0x08){
 			/* If command was N , send OK (the value is already stored in the grid) */
-			// args_counter = 0; PROBABLY not needed here
 			send_ok();
 		}
 		else if(flag_reg_A == 0x10){
@@ -361,7 +325,7 @@ ISR (USART_RXC_vect){
 		}
 		else if(flag_reg_A == 0x20){
 			/* If command was S, start sending values */
-			///////////////////////////////////////start_sending = 1; FOR NOW, not needed
+			break_transmission = 0; /* Initialize break_transmission to 0, to be able to send the next cells */
 			/* Send the first cell */
 			sent_counter_X = 1;
 			sent_counter_Y = 1;
@@ -369,18 +333,21 @@ ISR (USART_RXC_vect){
 		}
 		else if(flag_reg_A == 0x40){
 			/* If command was T, send next value */
-			sent_counter_Y++;
-			if(sent_counter_Y == 10){
-				sent_counter_Y = 1;
-				sent_counter_X++;
+			if(break_transmission != 1){
+				sent_counter_Y++;
+				if(sent_counter_Y == 10){
+					sent_counter_Y = 1;
+					sent_counter_X++;
+				}
+				send_cell(sent_counter_X, sent_counter_Y);
 			}
-			send_cell(sent_counter_X, sent_counter_Y);
+			/* Of course, if break_transmission=0(after a B command), we will not send something back to the computer */
 			
 		}
 		else if(flag_reg_B == 0x04){
 			/* If command was B, stop calculations or sending results and send OK */
 			break_game = 1;
-			// TODO: Stop sending results
+			break_transmission = 1;
 			send_ok();
 		}
 		else if(flag_reg_B == 0x08){
@@ -408,9 +375,8 @@ ISR (USART_RXC_vect){
 			else if(args_counter == 2){            /* Third argument, VALUE */
 				received_char = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
 				grid[received_X-1][received_Y-1] = received_char; /* Subtract 1 because in C, array index starts from 0, but in our UART protocol, it starts from 1 */
-				//args_counter = 0; /* TODO: Maybe not needed */
 				num_cnt++; /* Note that we received one more value */
-				updateLEDS(num_cnt);
+				PORTA = led_bar[num_cnt];//updateLEDS(num_cnt);
 			}
 		}
 		else if(flag_reg_B == 0x08){ /* If command was D, the first time read X, the second time read Y, the third time prepare VALUE to be sent */
@@ -419,8 +385,7 @@ ISR (USART_RXC_vect){
 				 args_counter++;
 			 }
 			 else if(args_counter == 1){            /* Second argument, Y */
-				 received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-				// args_counter = 0; /* TODO: Maybe not needed */	 
+				 received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */	 
 			 }
 		}
 		
@@ -436,7 +401,10 @@ ISR (USART_RXC_vect){
 /* TODO: Decide if table lookup (said in classroom) is needed for acceleration */
 /************************************************************************/
 uint8_t solve_sudoku(){	
-	// TODO: Add somewhere a condition to stop solving (for the B command)
+	if(break_game == 1){
+		return (-1);  //TODO: Check if this can stop solving
+	}
+	
 	for(uint8_t i=0; i<9; i++){
 		for(uint8_t j=0; j<9; j++){
 			if(grid[i][j] == 0){
@@ -444,14 +412,14 @@ uint8_t solve_sudoku(){
 					if((!(exists_in_row(i, value))) && (!(exists_in_column(j, value))) && (!(exists_in_box(i, j, value)))){
 						grid[i][j] = value;
 						num_cnt++; // Increment
-						updateLEDS();
+						PORTA = led_bar[num_cnt];
 						if(solve_sudoku()){
 							return 1;
 						}
 						else{
 						grid[i][j] = 0;
 						num_cnt--; // Decrement
-						updateLEDS();
+						PORTA = led_bar[num_cnt];
 						}
 					}
 				}
@@ -463,6 +431,44 @@ uint8_t solve_sudoku(){
 }
 
 
+/************************************************************************/
+/* init_LED_LUT                                                         */
+/* Function to initialize the lookup table in SRAM, used to manage the  */
+/*   status bar                                                         */
+/* Important note: We do not use flash memory for the LUT, because      */
+/*   accessing flash needs 1 more cycle than accessing SRAM (it is the  */
+/*   time difference between LD and LPM assembly instructions,          */
+/*   see AVR Instruction Set)                                           */
+/************************************************************************/
+void init_LED_LUT(void){  /* TODO 26/11: Maybe unroll the loops for faster execution */
+	uint8_t i;
+	for(i=0; i<10; i++){
+		led_bar[i] = 0xFF; /* 0-9   cells completed -> All LEDS off */
+	}
+	for(i=10; i<20; i++){
+		led_bar[i] = 0xFE; /* 10-19 cells completed -> LED0   */
+	}
+	for(i=20; i<30; i++){
+		led_bar[i] = 0xFC; /* 20-29 cells completed -> LED1-0 */
+	}
+	for(i=30; i<40; i++){
+		led_bar[i] = 0xF8; /* 30-39 cells completed -> LED2-0 */
+	}
+	for(i=40; i<50; i++){
+		led_bar[i] = 0xF0; /* 40-49 cells completed -> LED3-0 */
+	}
+	for(i=50; i<60; i++){
+		led_bar[i] = 0xE0; /* 50-59 cells completed -> LED4-0 */
+	}
+	for(i=60; i<70; i++){
+		led_bar[i] = 0xC0; /* 60-69 cells completed -> LED5-0 */
+	}
+	for(i=70; i<80; i++){
+		led_bar[i] = 0x80; /* 70-79 cells completed -> LED6-0 */
+	}
+	led_bar[80] = 0x00;    /* 80    cells completed -> LED7-0 */
+	led_bar[81] = 0x00;    /* 81    cells completed -> LED7-0 */
+}
 
 /************************************************************************/
 /* init                                                                 */
@@ -482,8 +488,10 @@ void init(void){
 	received_X = 0x00;
 	received_Y = 0x00;
 	
-	sent_counter_X = 0;
-	sent_counter_Y = 0;
+	sent_counter_X = 1;
+	sent_counter_Y = 1;
+	
+	break_transmission = 0;
 	
 	/* Configure and initialize PortA */
 	portA_init();
@@ -493,7 +501,11 @@ void init(void){
 	
 	/* Initialize the serial port */
 	USART_init(MYUBRR);
+	
+	/* Initialize the LookUp Table for the LED status bar */
+	init_LED_LUT();	
 }
+
 
 
 /************************************************************************/
@@ -501,27 +513,20 @@ void init(void){
 /* The main part of the program                                         */
 /************************************************************************/
 int main(void){	
-	/* Initialize global variables, ports and serial port */
+	/* Initialize global variables, PortA and serial port */
 	init();
 	
-	/* Enable global interrupts */
+	/* Enable global interrupts support */
 	sei();
 	
 	/* Do an infinite loop */
 	while (1) { 
-		if(start_game == 1 && break_game == 0){ //This will not stop solving if receiving "B"
-		
+		if(start_game == 1 && break_game == 0){
 			if(solve_sudoku()){
+				start_game = 0;
 				send_done();
 			}
-			
-			
-			
-			// if a B command is received, the solving will stop
-			
-			// TODO: When ISR returns from B, what will happen? We want it to stop
 		}
-	
 	}
 		
 	

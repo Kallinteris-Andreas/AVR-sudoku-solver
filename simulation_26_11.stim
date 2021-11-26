@@ -1,0 +1,1063 @@
+$log TCNT0 //The USART output is redirected to TCNT0
+
+#2000 //Wait for the initializations to be done
+
+$startlog simulation.log //o
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command C<CR><LF>
+TCNT2 = 0x43         //C
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N115<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N316<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N514<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N613<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N919<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N621<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N133<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N439<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N638<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N737<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N834<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N244<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N345<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N541<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N743<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N848<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N946<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N156<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N951<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N168<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N261<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N362<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N563<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N765<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N869<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N277<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N378<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N471<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N672<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N973<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N483<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x33         //3
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N192<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x32         //2
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N496<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x36         //6
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N598<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x35         //5
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x38         //8
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N791<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x37         //7
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x31         //1
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command N994<CR><LF>
+TCNT2 = 0x4E         //N
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x39         //9
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x34         //4
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+//
+// Wait 20000 cycles, and send another command
+#20000
+// Send the command P<CR><LF>
+TCNT2 = 0x50         //P
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0D         //<CR>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+TCNT2 = 0x0A         //<LF>
+UCSRA = 0b10000000 //Fire the receive interrupt
+#10000
+
+// Wait to receive D<CR><LF>
+
+// Continue with S command
+
+
+
+#50000
+$stoplog
