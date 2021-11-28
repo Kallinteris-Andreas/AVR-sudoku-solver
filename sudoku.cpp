@@ -6,10 +6,15 @@
 
 
 
-#include <array>
-#include <iostream>
-#include <cstdio>
+
+
+#include "kallinteris.hpp"
+#ifdef AVR
+#else
 #include <cassert>
+#include <iostream>
+#endif
+//#include <cstdio>
 #include <cstdint>
 
 const int8_t empty_cell = 0x00;
@@ -29,16 +34,19 @@ class sudoku{
 		 * 	e.g. if the returned[6] is true it means that 7 is a valid value for that cell
 		 */
 		[[gnu::pure, nodiscard]]
-		std::array<bool, lenght> possible_values(const int8_t y_cord, const int8_t x_cord){
+		kallinteris::array<bool, lenght> possible_values(const int8_t y_cord, const int8_t x_cord){
 			if (x_cord < 0 || x_cord > lenght)
 				__builtin_unreachable();
 			if (y_cord < 0 || y_cord > lenght)
 				__builtin_unreachable();
 
 			assert(board[y_cord][x_cord] == empty_cell);
-			std::array<bool, lenght> to_return = {};
+			kallinteris::array<bool, lenght> to_return = {};
+			to_return.fill(true);
+			/*
 			for (auto &i : to_return)
 				i = true;
+				*/
 
 			//invalidate values based on it's horizontal line
 			for (auto i = 0; i!=lenght; i++)
