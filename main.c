@@ -11,96 +11,13 @@
 ; IDE used             : Microchip Studio 7
 ; CPU freq             : 10 MHz, using an oscillator in STK500 (If changed, things such as timer init. value and UBRR for the serial port should change too)
 */
+#include "Sudoku.h"
 
-#include <avr/io.h>
-#include <avr/interrupt.h>  //To use interrupt handlers
-#include <avr/iom16.h>      //Definition for UDR
+/* An instance of these struct-unions */
+struct flags_struct flg;
+union counters_X cnt_X;
+union counters_Y cnt_Y;
 
-#define F_CPU 10000000             // CPU Clock = 10MHz
-#define BAUD 9600                  // Data rate of 9600 BAUD for USART
-#define MYUBRR ((F_CPU/16/BAUD)-1) // Calculate UBRR's value
-
-/************************************************************************/
-/* Macros TODO: Add more comments                                       */
-/************************************************************************/
-#define exists_in_row(row, value) \
-{ \
-	(grid[row][0] == value || grid[row][1] == value || grid[row][2] == value \
-	 || grid[row][3] == value || grid[row][4] == value || grid[row][5] == value \
-	 || grid[row][6] == value || grid[row][7] == value || grid[row][8] ==value); \
-}
-
-#define exists_in_column(column, value) \
-{ \
-	(grid[0][column] == value || grid[1][column] == value || grid[2][column] == value \
-	 || grid[3][column] == value || grid[4][column] == value || grid[5][column] == value \
-	 || grid[6][column] == value || grid[7][column] == value || grid[8][column] ==value); \
-}
-
-#define exists_in_box(row, column, value) \
-{ \
-	uint8_t row_of_box = row - row%3; \
-	uint8_t column_of_box = column - column %3; \
-	(grid[row_of_box][column_of_box] == value || \
-	 grid[row_of_box][column_of_box + 1] == value || \
-	 grid[row_of_box][column_of_box + 2] == value || \
-	 grid[row_of_box + 1][column_of_box] == value || \
-	 grid[row_of_box + 1][column_of_box + 1] == value || \
-	 grid[row_of_box + 1][column_of_box + 2] == value || \
-	 grid[row_of_box + 2][column_of_box] == value || \
-	 grid[row_of_box + 2][column_of_box + 1] == value || \
-	 grid[row_of_box + 2][column_of_box + 2] == value); \
-}
-
-
-/************************************************************************/
-/* Global variables                                                     */
-/************************************************************************/
-volatile uint8_t flag_reg_A;  /* -flag_reg_A bit0 shows if we have received A
-                                 -flag_reg_A bit1 shows if we have received T
-                                 -flag_reg_A bit2 shows if we have received C
-                                 -flag_reg_A bit3 shows if we have received N
-                                 -flag_reg_A bit4 shows if we have received P
-							     -flag_reg_A bit5 shows if we have received S
-							     -flag_reg_A bit6 shows if we have received T
-							     -flag_reg_A bit7 is useless */
-
-volatile uint8_t flag_reg_B;  /* -flag_reg_B bit0 shows if we have received O
-                                 -flag_reg_B bit1 shows if we have received K
-                                 -flag_reg_B bit2 shows if we have received B
-                                 -flag_reg_B bit3 shows if we have received D
-							     -flag_reg_B upper nibble is useless */
-
-
-volatile uint8_t num_cnt;   /* A counter for the numbers we have in the grid (not the zeros) */
-
-
-volatile uint8_t args_counter; /* A counter useful to know if we are receiving X,Y or VALUE after the "N" */
-
-volatile uint8_t received_X;
-volatile uint8_t received_Y; /* Useful to keep X and Y to write the VALUE to the grid in the 3rd ISR call after "N" */
-/* Could use only 1 8-bit variable and separate the two nibbles, but it would cost more time (we have enough memory) */
-
-volatile uint8_t start_game; /* Used for the P command */
-volatile uint8_t break_game; /* Used for the B command */ /*Maybe only one of them is useful, FOR NOW keep both */
-
-/* A global variable to keep the sudoku in SRAM */
-volatile uint8_t grid[9][9];
-
-volatile uint8_t sent_counter_X; /* Used for commands S and T, to send the cells back to the computer */
-volatile uint8_t sent_counter_Y;
-
-// volatile uint8_t start_sending; /* Flag to start sending, in case of S command */ /* FOR NOW, not needed */
-volatile uint8_t led_bar[82];
-
-volatile uint8_t break_transmission; /* Flag to stop transmitting data in case of B command */
-/* TODO 26/11: Merge the "break" flags for game and transmission into one */
-
-
-/************************************************************************/
-/* DEFINE FUNCTIONS (like a C header file)                              */
-/************************************************************************/
-// void function_name(void);
 
 /************************************************************************/
 /* USART_init (C equivalent of usart_init in Lab3)                      */
@@ -165,9 +82,13 @@ void USART_Transmit(unsigned char data){
 	while ( !( UCSRA & (1<<UDRE)) );
 	
 	/* Ready to transmit: Put the data into buffer, send the data */
-	//UDR = data; 
-	TCNT0 = data; /* instead of "UDR = data;" for testing */
-	
+	#ifdef SIMULATION_MODE
+		TCNT0 = data;
+	#endif
+	#ifndef SIMULATION_MODE
+		UDR = data; 
+	#endif
+		
 }
 
 /************************************************************************/
@@ -179,8 +100,7 @@ void USART_Transmit(unsigned char data){
 void send_ok (void){
 	
 	/* Clean the flag registers, because we ended decoding this command */
-	flag_reg_A = 0x00;
-	flag_reg_B = 0x00;
+	clear_char_flags();
 	
 	/* Send an OK<CR><LF> message */
 	USART_Transmit(0x4F); /* Send "O" */
@@ -195,13 +115,12 @@ void send_ok (void){
 /************************************************************************/
 void send_cell (uint8_t bcd_x, uint8_t bcd_y){
 	/* Clean the flag registers, because we ended decoding this command */
-	flag_reg_A = 0x00;
-	flag_reg_B = 0x00;
+	clear_char_flags();
 	
 	/* Find the value, and convert it to ASCII */
 	/* Subtract 1 from x and y, because in the assignment X and Y start from 1, but
 	     in C, array positions start from 0. */
-	uint8_t value_to_send = grid[bcd_x - 1][bcd_y - 1] + 0x30;
+	uint8_t value_to_send = grid[bcd_y - 1][bcd_x - 1] + 0x30;
 	
 	/* Send the cell data */
 	USART_Transmit(0x4E);          // N
@@ -216,6 +135,9 @@ void send_cell (uint8_t bcd_x, uint8_t bcd_y){
 /* send_done                                                            */
 /************************************************************************/
 void send_done (void){
+	/* CLEAN FLAG REGS, OR NOT */
+	clear_char_flags();
+	
 	/* Send a D<CR><LF> message */  /* Clear flag regs is not needed here */
 	USART_Transmit(0x44); // D
 	USART_Transmit(0x0D); // <CR>
@@ -238,6 +160,9 @@ void clear(void){
 	
 	/* Turn off the LEDs (0 cells completed) */
 	PORTA = 0xFF;
+	
+	/* Update the cells counter */
+	num_cnt = 0;
 }
 
 /************************************************************************/
@@ -247,147 +172,127 @@ void clear(void){
 ISR (USART_RXC_vect){
 	unsigned char received_char = UDR;
 	
-	/* Added for simulation */
-	received_char = UDR;  /* Read UDR one more time, to consume RXC flag */
-	received_char = TCNT2;
+	#ifdef SIMULATION_MODE
+		received_char = UDR;  /* Read UDR one more time, to consume RXC flag */
+		received_char = TCNT2;
+	#endif
 	
-	if (received_char == 0x41){        //A
-		/* If "A", flag and return */
-		flag_reg_A = flag_reg_A | 0x01;
-	} 
-	else if (received_char == 0x54){   //T
-		/* If "T", flag and return */ 
-		flag_reg_A = flag_reg_A | 0x02;
-	}
-	else if (received_char == 0x43){   //C
-		/* If "C", flag and return */  
-		flag_reg_A = flag_reg_A | 0x04;
-		clear();
-	}
-	else if (received_char == 0x4E){   //N
-		/* If "N", flag, initialize the counter and return */
-		flag_reg_A = flag_reg_A | 0x08;
-		args_counter = 0;
-	}
-	else if (received_char == 0x50){   //P
-		/* If "P", flag and return. Play should start after CR-LF */
-		flag_reg_A = flag_reg_A | 0x10;
-	}
-	else if(received_char == 0x53){    //S
-		/* If "S", flag and return. The first cell will be sent from AVR after receiving LF */
-		flag_reg_A = flag_reg_A | 0x20;
-	}
-	else if(received_char == 0x54){    //T
-		/* If "T", flag and return. The next cell will be sent from AVR after receiving LF */
-		flag_reg_A = flag_reg_A | 0x40;
-	}
-	else if(received_char == 0x42){    //B
-		/* If "B", flag and return. The solving/sending process should "freeze" after <LF>. */
-		flag_reg_B = flag_reg_B | 0x04;
-	}
-	else if(received_char == 0x44){    //D
-		/* If "D", flag initialize the counter to get X and Y in the next calls and return */
-		flag_reg_B = flag_reg_B | 0x08;
-		args_counter = 0;
-	}
-	else if(received_char == 0x4F){    //O
-		flag_reg_B = flag_reg_B | 0x01;	
-	}
-	else if(received_char == 0x4B){    //K
-		flag_reg_B = flag_reg_B | 0x02;
-	}
-	else if (received_char == 0x0D){   //<CR>
-		/* If "<CR>", simply return, no flag is needed */
-	}
-	else if (received_char == 0x0A){   //<LF>
-		/* If "<LF>", process and return
-		   <LF> is the last character of each command, so it 
-		       is time to execute the received command */
+	switch(received_char){
+		case 0x41:
+			flg.received_A = true;
+			break;
+		case 0x54:
+			flg.received_T = true;
+			break;
+		case 0x43:
+			flg.received_C = true;
+			clear();
+			break;
+		case 0x4E:
+			flg.received_N = true;
+			args_counter = 0;
+			break;
+		case 0x50:
+			flg.received_P = true;
+			break;
+		case 0x53:
+			flg.received_S = true;
+			break;
+		case 0x42:
+			flg.received_B = true;
+			break;
+		case 0x44:
+			flg.received_D = true;
+			args_counter = 0;
+			break;
+		case 0x4F:
+			flg.received_O = true;
+			break;
+		case 0x4B:
+			flg.received_K = true;
+			break;
+		case 0x0D:
+			break;
+		case 0x0A:
+			/* If "<LF>", process and return
+			   <LF> is the last character of each command, so it 
+				   is time to execute the received command */
 		
-		if(flag_reg_A == 0x03){
-			/* If command was AT, send OK */
-			send_ok();
-		}
-		else if(flag_reg_A == 0x04){
-			/* If command was C, send OK */
-			/* Clear has already been done (when we received "C"), simply send OK */
-			send_ok();
-		}
-		else if(flag_reg_A == 0x08){
-			/* If command was N , send OK (the value is already stored in the grid) */
-			send_ok();
-		}
-		else if(flag_reg_A == 0x10){
-			/* If command was P,start solving the sudoku after sending OK */
-			start_game = 1;
-			break_game = 0;
-			send_ok();
-		}
-		else if(flag_reg_A == 0x20){
-			/* If command was S, start sending values */
-			break_transmission = 0; /* Initialize break_transmission to 0, to be able to send the next cells */
-			/* Send the first cell */
-			sent_counter_X = 1;
-			sent_counter_Y = 1;
-			send_cell(sent_counter_X, sent_counter_Y);
-		}
-		else if(flag_reg_A == 0x40){
-			/* If command was T, send next value */
-			if(break_transmission != 1){
-				sent_counter_Y++;
-				if(sent_counter_Y == 10){
-					sent_counter_Y = 1;
-					sent_counter_X++;
+			if( (flg.received_A && flg.received_T) || (flg.received_C) || (flg.received_N) ){
+				/* If command was AT or C or N, send OK */
+				send_ok();
+			}
+			else if(flg.received_P){
+				/* If command was P,start solving the sudoku after sending OK */
+				flg.solving_barrier = true;
+				send_ok();
+			}
+			else if(flg.received_S){
+				/* If command was S, start sending values */
+				flg.transmit_barrier = true; /* Set the transmit barrier, to be able to send the next cells */
+				/* Send the first cell */
+				cnt_X.sent_counter_X = 1;
+				cnt_Y.sent_counter_Y = 1;
+				send_cell(cnt_X.sent_counter_X, cnt_Y.sent_counter_Y);
+			}
+			else if(flg.received_T){
+				/* If command was T, send next value */
+				if(flg.transmit_barrier){
+					cnt_X.sent_counter_X++;
+					if(cnt_X.sent_counter_X == 10){
+						cnt_X.sent_counter_X = 1;
+						cnt_Y.sent_counter_Y++;
+					}
+					send_cell(cnt_X.sent_counter_X, cnt_Y.sent_counter_Y);
 				}
-				send_cell(sent_counter_X, sent_counter_Y);
-			}
-			/* Of course, if break_transmission=0(after a B command), we will not send something back to the computer */
+				/* Of course, if break_transmission=0(after a B command), we will not send something back to the computer */
 			
-		}
-		else if(flag_reg_B == 0x04){
-			/* If command was B, stop calculations or sending results and send OK */
-			break_game = 1;
-			break_transmission = 1;
-			send_ok();
-		}
-		else if(flag_reg_B == 0x08){
-			/* If command was D, send cell contents (they are already prepared when we received Y) */
-			send_cell(received_X, received_Y);
-		}
-		else if(flag_reg_B == 0x03){
-			/* If command was OK, this means that the computer has received all the values */
-			/* TODO */ /*Is something needed here ? */
-		}
-		
-		
-	}
-	else{ /* Received numbers (Commands N and D from computer) */
-		
-		if(flag_reg_A == 0x08){ /* If command was N, the first time read X, the second time read Y, the third time read VALUE and store it */
-			if(args_counter == 0){                 /* First argument, X */
-				received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-				args_counter++;
 			}
-			else if(args_counter == 1){            /* Second argument, Y */
-				received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-				args_counter++;
+			else if(flg.received_B){
+				/* If command was B, stop calculations or sending results and send OK */
+				flg.solving_barrier = false;
+				flg.transmit_barrier = false;
+				send_ok();
 			}
-			else if(args_counter == 2){            /* Third argument, VALUE */
-				received_char = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-				grid[received_X-1][received_Y-1] = received_char; /* Subtract 1 because in C, array index starts from 0, but in our UART protocol, it starts from 1 */
-				num_cnt++; /* Note that we received one more value */
-				PORTA = led_bar[num_cnt];//updateLEDS(num_cnt);
+			else if(flg.received_D){
+				/* If command was D, send cell contents (they are already prepared when we received Y) */
+				send_cell(cnt_X.sent_counter_X, cnt_Y.sent_counter_Y);
 			}
-		}
-		else if(flag_reg_B == 0x08){ /* If command was D, the first time read X, the second time read Y, the third time prepare VALUE to be sent */
-			 if(args_counter == 0){                 /* First argument, X */
-				 received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-				 args_counter++;
-			 }
-			 else if(args_counter == 1){            /* Second argument, Y */
-				 received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */	 
-			 }
-		}
+			else if(flg.received_O && flg.received_K){
+				/* If command was OK, this means that the computer has received all the values */
+				/* TODO */ /*Is something needed here ? */
+			}
+			
+			break;
+			
+		default:
+			/* Received numbers (Commands N and D from computer) */
+		
+			if(flg.received_N){ /* If command was N, the first time read X, the second time read Y, the third time read VALUE and store it */
+				if(args_counter == 0){                 /* First argument, X */
+					cnt_X.received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+					args_counter++;
+				}
+				else if(args_counter == 1){            /* Second argument, Y */
+					cnt_Y.received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+					args_counter++;
+				}
+				else if(args_counter == 2){            /* Third argument, VALUE */
+					received_char = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+					grid[cnt_Y.received_Y-1][cnt_X.received_X-1] = received_char; /* Subtract 1 because in C, array index starts from 0, but in our UART protocol, it starts from 1 */
+					num_cnt++; /* Note that we received one more value */
+					PORTA = pgm_read_byte(&led_bar_LUT[num_cnt]);
+				}
+			}
+			else if(flg.received_D){ /* If command was D, the first time read X, the second time read Y, the third time prepare VALUE to be sent */
+				 if(args_counter == 0){                 /* First argument, X */
+					 cnt_X.received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+					 args_counter++;
+				 }
+				 else if(args_counter == 1){            /* Second argument, Y */
+					 cnt_Y.received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */	 
+				 }
+			}
 		
 		
 		
@@ -401,25 +306,25 @@ ISR (USART_RXC_vect){
 /* TODO: Decide if table lookup (said in classroom) is needed for acceleration */
 /************************************************************************/
 uint8_t solve_sudoku(){	
-	if(break_game == 1){
-		return (-1);  //TODO: Check if this can stop solving
+	if(!flg.solving_barrier){
+		return 0;  //TODO: Check if this can stop solving
 	}
 	
 	for(uint8_t i=0; i<9; i++){
 		for(uint8_t j=0; j<9; j++){
 			if(grid[i][j] == 0){
 				for(uint8_t value=1; value<=9; value++){
-					if((!(exists_in_row(i, value))) && (!(exists_in_column(j, value))) && (!(exists_in_box(i, j, value)))){
+					if((!(EXISTS_IN_ROW(i, value))) && (!(EXISTS_IN_COLUMN(j, value))) && (!(EXISTS_IN_BOX(i, j, value)))){
 						grid[i][j] = value;
 						num_cnt++; // Increment
-						PORTA = led_bar[num_cnt];
+						PORTA = pgm_read_byte(&led_bar_LUT[num_cnt]);
 						if(solve_sudoku()){
 							return 1;
 						}
 						else{
 						grid[i][j] = 0;
 						num_cnt--; // Decrement
-						PORTA = led_bar[num_cnt];
+						PORTA = pgm_read_byte(&led_bar_LUT[num_cnt]);
 						}
 					}
 				}
@@ -431,43 +336,22 @@ uint8_t solve_sudoku(){
 }
 
 
+
+
 /************************************************************************/
-/* init_LED_LUT                                                         */
-/* Function to initialize the lookup table in SRAM, used to manage the  */
-/*   status bar                                                         */
-/* Important note: We do not use flash memory for the LUT, because      */
-/*   accessing flash needs 1 more cycle than accessing SRAM (it is the  */
-/*   time difference between LD and LPM assembly instructions,          */
-/*   see AVR Instruction Set)                                           */
+/*                                                                      */
 /************************************************************************/
-void init_LED_LUT(void){  /* TODO 26/11: Maybe unroll the loops for faster execution */
-	uint8_t i;
-	for(i=0; i<10; i++){
-		led_bar[i] = 0xFF; /* 0-9   cells completed -> All LEDS off */
-	}
-	for(i=10; i<20; i++){
-		led_bar[i] = 0xFE; /* 10-19 cells completed -> LED0   */
-	}
-	for(i=20; i<30; i++){
-		led_bar[i] = 0xFC; /* 20-29 cells completed -> LED1-0 */
-	}
-	for(i=30; i<40; i++){
-		led_bar[i] = 0xF8; /* 30-39 cells completed -> LED2-0 */
-	}
-	for(i=40; i<50; i++){
-		led_bar[i] = 0xF0; /* 40-49 cells completed -> LED3-0 */
-	}
-	for(i=50; i<60; i++){
-		led_bar[i] = 0xE0; /* 50-59 cells completed -> LED4-0 */
-	}
-	for(i=60; i<70; i++){
-		led_bar[i] = 0xC0; /* 60-69 cells completed -> LED5-0 */
-	}
-	for(i=70; i<80; i++){
-		led_bar[i] = 0x80; /* 70-79 cells completed -> LED6-0 */
-	}
-	led_bar[80] = 0x00;    /* 80    cells completed -> LED7-0 */
-	led_bar[81] = 0x00;    /* 81    cells completed -> LED7-0 */
+void clear_char_flags(void){
+	flg.received_A = false;
+	flg.received_B = false;
+	flg.received_C = false;
+	flg.received_D = false;
+	flg.received_K = false;
+	flg.received_N = false;
+	flg.received_O = false;
+	flg.received_P = false;
+	flg.received_S = false;
+	flg.received_T = false;	
 }
 
 /************************************************************************/
@@ -477,21 +361,19 @@ void init_LED_LUT(void){  /* TODO 26/11: Maybe unroll the loops for faster execu
 void init(void){
 	
 	/* Initialize the global variables for the serial port */
-	flag_reg_A = 0x00;
-	flag_reg_B = 0x00;
+
 	num_cnt = 0;
-	start_game = 0;
-	break_game = 0;
-	
-	/* */
 	args_counter = 0;
-	received_X = 0x00;
-	received_Y = 0x00;
+	cnt_X.received_X = 0x00;
+	cnt_Y.received_Y = 0x00;
 	
-	sent_counter_X = 1;
-	sent_counter_Y = 1;
+	cnt_X.sent_counter_X = 1;
+	cnt_Y.sent_counter_Y = 1;
 	
-	break_transmission = 0;
+	clear_char_flags();
+	flg.solving_barrier = false;
+	flg.transmit_barrier = false;
+	
 	
 	/* Configure and initialize PortA */
 	portA_init();
@@ -501,9 +383,6 @@ void init(void){
 	
 	/* Initialize the serial port */
 	USART_init(MYUBRR);
-	
-	/* Initialize the LookUp Table for the LED status bar */
-	init_LED_LUT();	
 }
 
 
@@ -521,9 +400,9 @@ int main(void){
 	
 	/* Do an infinite loop */
 	while (1) { 
-		if(start_game == 1 && break_game == 0){
+		if(flg.solving_barrier){
 			if(solve_sudoku()){
-				start_game = 0;
+				flg.solving_barrier = false;
 				send_done();
 			}
 		}
