@@ -13,12 +13,11 @@
 #else
 #include <cassert>
 #include <iostream>
-#endif
-//#include <cstdio>
 #include <cstdint>
+#endif
 
 const int8_t empty_cell = 0x00;
-const auto lenght = 9; //indicate the dimentions
+const auto lenght = 9; //indicate the dimensions
 
 class sudoku{
 	private:
