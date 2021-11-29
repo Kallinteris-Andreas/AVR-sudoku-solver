@@ -105,6 +105,12 @@ class sudoku{
 			board[y_cord-1][x_cord-1] = value;
 			solved_cell_counter++;
 		}
+		uint8_t get_cell(const int8_t y_cord, const int8_t x_cord){
+			return board[y_cord-1][x_cord-1];
+		}
+		uint8_t get_solved_cell_counter(){
+			return solved_cell_counter;
+		}
 
 		/// \brief set all cells to @c empty_cell
 		void clear(){
