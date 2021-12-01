@@ -42,10 +42,6 @@ class sudoku{
 			assert(board[y_cord][x_cord] == empty_cell);
 			kallinteris::array<bool, lenght> to_return = {};
 			to_return.fill(true);
-			/*
-			for (auto &i : to_return)
-				i = true;
-				*/
 
 			//invalidate values based on it's horizontal line
 			for (auto i = 0; i!=lenght; i++)
@@ -159,5 +155,5 @@ class sudoku{
 		}
 		#endif
 
-		void solve(){solve(0);}
+		bool solve(){return solve(0);}
 };
