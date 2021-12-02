@@ -20,23 +20,13 @@ namespace kallinteris{
 		private:
 			T arr[length];
 		public:
-			array(){};
+			constexpr array(){};
 			
-			/*
-			template <int N>
-			array<T, N> operator=(const T c_arr[N]){
-				array<T,N> a;
-				a.arr = c_arr;
-				return a;
-			};
-			*/
-
 			constexpr int size() const {return length;}
 
-			T& operator[](const int n){
+			constexpr T& operator[](const int n){
 				return arr[n];
 			};
-
 			const T& operator[](const int n) const {
 				return arr[n];
 			};
@@ -58,15 +48,6 @@ namespace kallinteris{
 		public:
 			constexpr nimble_array(){};
 			
-			/*
-			template <int N>
-			array<T, N> operator=(const T c_arr[N]){
-				array<T,N> a;
-				a.arr = c_arr;
-				return a;
-			};
-			*/
-
 			constexpr int size() const {return length;}
 			constexpr char get(const int index){
 				if ((index%2) == 0)
@@ -82,7 +63,7 @@ namespace kallinteris{
 				else if ((index%2) == 1)
 					return arr[index/2] >> 4;
 				assert(false);
-				//__builtin_unreachable();
+				__builtin_unreachable();//TODO make sure
 			}
 			constexpr void set(const int index, const int value){
 				if (value > 0x0F)
@@ -92,6 +73,46 @@ namespace kallinteris{
 					arr[index/2] = (arr[index/2]&0xF0) | value;
 				else if (index%2 == 1)
 					arr[index/2] = (arr[index/2]&0x0F) | (value << 4);
+			}
+
+			constexpr void fill(const unsigned char& value){
+				if (value > 0x0F)
+					__builtin_unreachable();
+				const unsigned char nv = value + (value << 4);
+				for (auto i = 0; i != length; i++)
+					arr[i] = nv;
+				//for (auto i = 0; i != this->size(); i++)
+					//this->set(i, value);
+			}
+	};
+
+	// \brief and array of bool
+	template<int length>
+	class bool_array{
+		private:
+			unsigned char arr[(length+7)/8];
+		public:
+			constexpr bool_array() = default;
+			
+			constexpr int size() const {return length;}
+			constexpr bool get(const int index){
+				return arr[index/8] & (1 << index%8);
+			}
+			constexpr bool get(const int index) const{
+				return arr[index/8] & (1 << index%8);
+			}
+			constexpr void set(const int index, const bool value){
+				arr[index/8] = arr[index/8] & ~(1 << index%8);//remove the old value
+				arr[index/8] = arr[index/8] | (value << index%8);
+			}
+
+			constexpr void fill(const unsigned char& value){
+				if (value == false)
+					for (auto i = 0; i != (length+7)/8; i++)
+						arr[i] = 0x00;
+				else if (value == true)
+					for (auto i = 0; i != (length+7)/8; i++)
+						arr[i] = 0xFF;
 			}
 	};
 

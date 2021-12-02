@@ -358,21 +358,20 @@ void init(void){
 int main(void){	
 	/* Initialize global variables, PortA and serial port */
 	init();
-	
 	/* Enable global interrupts support */
 	sei();
 	
-	/* Do an infinite loop */
-	while (1) { 
+	base_board.set_solving_barrier(true);
+	//while (true) {
 		if(base_board.get_solving_barrier()){
 			if(base_board.solve()){
 				base_board.set_solving_barrier(false);
 				send_done();
 			}
 		}
-	}
-		
-	
+	//}
+	while (true)
+		;
 }
 
 
