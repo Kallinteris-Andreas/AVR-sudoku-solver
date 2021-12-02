@@ -120,8 +120,7 @@ namespace kallinteris{
 
 	// \brief a re implemention of std::pair
 	template<typename _T1, typename _T2>
-	struct pair
-	{
+	struct pair{
 		typedef _T1 first_type;    ///< The type of the `first` member
 		typedef _T2 second_type;   ///< The type of the `second` member
 	
