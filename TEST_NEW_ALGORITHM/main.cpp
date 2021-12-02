@@ -28,22 +28,13 @@ union counters_Y cnt_Y;
 /************************************************************************/
 /* TIMER1_init                                                          */
 /************************************************************************/
- void timer1_init(){
+ void timer1_init(void){
 	const auto LED_refresh_rate = 30;
 	TCCR1B |= (0 << CS10) | (1 << CS11) | (0 << CS12);//set clock pre-scaler to 8
 	OCR1A = (F_CPU / LED_refresh_rate + (F_CPU % LED_refresh_rate > LED_refresh_rate/2))/8;
 	TIMSK |= (1 << OCIE1A); //Timer/Counter1, Output Compare A Match Interrupt Enable
 	TCCR1A |= 0;
 	TCCR1B |= (1 << WGM12);//Waveform Generation Mode = Clear Timer on compare match OCR1A
-/*
-	// Set the prescaler (CK/8), see pg113 of the manual
-	TCCR1B = (0 << CS12) | (1 << CS11) | (0 << CS10); 
-	// TIMER/COUNTER 1 goes only up. We want it to count 41667 numbers (explained on report), so 
-		we initialize with the value 65536-x=41667=> x= 65536-41667=23869
-	TCNT1 = 23869;
-	// Enable the TIMER1 Overflow interrupt (TOIE1 = 1)
-	TIMSK = (1 << TOIE1);
-*/
  }
  
  /************************************************************************/
@@ -52,14 +43,8 @@ union counters_Y cnt_Y;
 ISR(TIMER1_COMPA_vect){
 	PORTA = pgm_read_byte(&led_bar_LUT[base_board.get_solved_cell_counter()]);
 };
-/*
-ISR (TIMER1_OVF_vect){
-	// Send the 7seg representation to PORTA
-	PORTA = pgm_read_byte(&led_bar_LUT[base_board.get_solved_cell_counter()]);
-	// Reset the counter (to achieve a frequency of 30Hz)
-	//TCNT1 = 23869;
-}
-*/
+
+
 
 
 /************************************************************************/

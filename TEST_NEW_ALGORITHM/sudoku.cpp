@@ -22,7 +22,7 @@ class sudoku{
 	private:
 		uint8_t board[lenght][lenght]; //note should only be filled with 0x1->0x09 & \c empty_cell
 		uint8_t solved_cell_counter; //\brief number of cell with a non \c empty_cell value
-		bool solving_barrier; // Added by elioudakis on 1 Dec. to support B command
+		volatile bool solving_barrier; // Added by elioudakis on 1 Dec. to support B command
 
 		/**
 		 * \brief check which value the {\c x_cord, \c y_cord} cell could have
