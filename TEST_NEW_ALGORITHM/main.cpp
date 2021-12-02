@@ -25,6 +25,32 @@ struct flags_struct flg;
 union counters_X cnt_X;
 union counters_Y cnt_Y;
 
+/************************************************************************/
+/* TIMER1_init                                                          */
+/************************************************************************/
+ void timer1_init(void){
+	  /* Set the prescaler (CK/8), see pg113 of the manual */
+	TCCR1B = (0 << CS12) | (1 << CS11) | (0 << CS10); 
+	
+	/* TIMER/COUNTER 1 goes only up. We want it to count 41667 numbers (explained on report), so 
+		we initialize with the value 65536-x=41667=> x= 65536-41667=23869 */
+	TCNT1 = 23869;
+	
+	/* Enable the TIMER1 Overflow interrupt (TOIE1 = 1) */
+	TIMSK = (1 << TOIE1);
+ }
+ 
+ /************************************************************************/
+ /* Interrupt handler for the LEDs                                       */
+ /************************************************************************/
+ISR (TIMER1_OVF_vect){
+	/* Send the 7seg representation to PORTA */
+	PORTA = pgm_read_byte(&led_bar_LUT[base_board.get_solved_cell_counter()]);
+	
+	/* Reset the counter (to achieve a frequency of 30Hz) */
+	TCNT1 = 23869;
+}
+
 
 /************************************************************************/
 /* USART_init (C equivalent of usart_init in Lab3)                      */
@@ -285,7 +311,7 @@ ISR (USART_RXC_vect){
 					base_board.set_cell(cnt_Y.received_Y, cnt_X.received_X, received_char);
 					//grid[cnt_Y.received_Y-1][cnt_X.received_X-1] = received_char; /* Subtract 1 because in C, array index starts from 0, but in our UART protocol, it starts from 1 */
 					//num_cnt++; /* Note that we received one more value */
-					PORTA = pgm_read_byte(&led_bar_LUT[base_board.get_solved_cell_counter()]);
+					//PORTA = pgm_read_byte(&led_bar_LUT[base_board.get_solved_cell_counter()]);
 				}
 			}
 			else if(flg.received_D){ /* If command was D, the first time read X, the second time read Y, the third time prepare VALUE to be sent */
@@ -322,7 +348,8 @@ void clear_char_flags(void){
 
 /************************************************************************/
 /* init                                                                 */
-/* Function to initialize global variables, ports, counters and USART   */
+/* Function to initialize global variables, timers,ports, counters      */
+/*     and USART                                                        */
 /************************************************************************/
 void init(void){
 	
@@ -341,6 +368,9 @@ void init(void){
 	
 	/* Configure and initialize PortA */
 	portA_init();
+	
+	/* Initialize Timer1 (sed to refresh the LED progress bar) */
+	timer1_init();
 	
 	/* Initialize memory and PortA */
 	clear();

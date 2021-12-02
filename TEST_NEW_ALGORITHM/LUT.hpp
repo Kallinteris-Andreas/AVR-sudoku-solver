@@ -5,6 +5,7 @@
 #include <utility>
 #endif
 #include "kallinteris.hpp"
+#include <avr/pgmspace.h>   //Added by elioudakis on 2 Dec. To be able to use the flash memory
 
 /** \brief Generate std::pair<division, modulo> LUT
  * \author Kallinteris andreas
