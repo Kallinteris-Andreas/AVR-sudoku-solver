@@ -55,9 +55,6 @@ Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of 
 
 \section*{Description of the program}
 
-\subsubsection*{Storing the sudoku in memory}
-*object, instance on main.cpp
-
 \subsubsection*{The sudoku solving algorithm}
 *TO BE COMPLETED BY ANDREAS
 
@@ -87,20 +84,22 @@ The rest bytes (6352-82-162 = 6108) are reserved by the code instructions.
 
 \subsubsection*{Static RAM (SRAM)}
 The global variables used to control the serial port are the struct of flags for the received character(11 bits or 2 bytes -- 0x0062-0x0063), the union for the X counters (1 byte - 0x0061), the union for the Y counters (1 byte - 0x0060) and the counter for the arguments (1 byte - 0x00b7). The rest of the 88 bytes are used for the base\_board object (an instance of the sudoku class). Inside this object is stored the 9x9 sudoku grid as a two dimensioned array of unsigned integers. \\
-During the solving process, almost the whole remaining memory (1024-88 = 936 bytes) is used to save temporary results. (ANDREAS SHOULD EVALUATE IT)
+During the solving process, almost the whole remaining memory (1024-88 = 936 bytes) is used to save temporary results. (ANDREAS SHOULD EVALUATE THIS)
 
 
 
 \section*{Simulation in Microchip Studio, using stimuli files}
-X stimuli files are submitted with the code:
+Three stimuli files are submitted with the code:
 \begin{itemize}
-\item *a, which feeds the program with one sudoku board (the one shown in the assign-ment), waits until the sudoku is solved and sends the results back.
-\item *a, which feeds the program with the same sudoku board as above, but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
-\item *a, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
+\item simple\_solve.stim, which feeds the program with one sudoku board (the one shown in the assign-ment), waits until the sudoku is solved and sends the results back.
+\item break\_debug\_test.stim, which feeds the program with the same sudoku board as above, but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
+\item two\_sudokus.stim, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
 \end{itemize}
+Using the Microchip Studio debugging tools (Run To Cursor and Step Into) and by watching the memory contents (e.g. the values that are completed each moment in the sudoju grid, or if the flag bits are set to true/false), the functionality of the program can be evaluated.
 
 \section*{Testing the code on real hardware (STK500)}
 \subsubsection*{Using PuTTY}
+
 \subsubsection*{Using the interface program developed by Odysseas Stavrou}
 
 
