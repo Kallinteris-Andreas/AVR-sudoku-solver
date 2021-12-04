@@ -95,7 +95,7 @@ During the solving process, almost the whole remaining memory (1024-88 = 936 byt
 \section*{Simulation in Microchip Studio, using stimuli files}
 Three stimuli files are submitted with the code (in the folder STIMULI\_FILES):
 \begin{itemize}
-\item simple\_solve.stim, which feeds the program with one sudoku board (the one shown in the assign-ment), waits until the sudoku is solved and sends the results back.
+\item simple\_solve.stim, which feeds the program with one sudoku board (the one shown in the assignment), waits until the sudoku is solved and sends the results back.
 \item break\_debug\_test.stim, which feeds the program with the same sudoku board as above, but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
 \item two\_sudokus.stim, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
 \end{itemize}
@@ -105,7 +105,7 @@ Using the Microchip Studio debugging tools (Run To Cursor and Step Into) and by 
 \subsubsection*{Using PuTTY}
 Three tests have been done on hardware using PuTTY. The content of the PuTTY terminal is provided in the following files:
 \begin{itemize}
-\item simple\_solve\_tty.log, which feeds the program with one sudoku board (the one shown in the assign-ment), waits until the sudoku is solved and sends the results back.
+\item simple\_solve\_tty.log, which feeds the program with one sudoku board (the one shown in the assignment), waits until the sudoku is solved and sends the results back.
 \item break\_debug\_tty.log, which feeds the program with a difficult sudoku board (to slow the solving process and have the time to give manually a break command), but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
 \item two\_sudokus\_tty.log, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
 \end{itemize}
