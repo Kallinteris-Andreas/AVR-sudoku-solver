@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 10:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 11:02
 entering extended mode
 **./ACE411_MILESTONE_REPORT_Team5.tex
 (ACE411_MILESTONE_REPORT_Team5.tex
@@ -61,22 +61,6 @@ File: babel.def 2021/03/24 3.56 Babel common definitions
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/babel-greek\greek.ldf
-Language: greek 2020/11/10 v1.10 Greek support for the babel system
-\bbl@monogreek=\count190
-\bbl@polygreek=\count191
-\bbl@ancientgreek=\count192
-
-(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/greek-fontenc\lgrenc.de
-f
-File: lgrenc.def 2020/10/13 2.0 LGR Greek font encoding definitions
-
-(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/greek-fontenc\greek-fon
-tenc.def
-File: greek-fontenc.def 2020/10/30 2.0 Common Greek font encoding definitions
-))
-LaTeX Info: Redefining \& on input line 125.
-)
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.l
 df
 Language: english 2017/06/06 v3.3r English support from the babel system
@@ -121,9 +105,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count193
-\Gm@cntv=\count194
-\c@Gm@tempcnt=\count195
+\Gm@cnth=\count190
+\Gm@cntv=\count191
+\c@Gm@tempcnt=\count192
 \Gm@bindingoffset=\dimen142
 \Gm@wd@mp=\dimen143
 \Gm@odd@mp=\dimen144
@@ -135,11 +119,26 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@dimlist=\toks21
 
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
-
+(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
+rs
+\f@nch@headwidth=\skip49
+\f@nch@O@elh=\skip50
+\f@nch@O@erh=\skip51
+\f@nch@O@olh=\skip52
+\f@nch@O@orh=\skip53
+\f@nch@O@elf=\skip54
+\f@nch@O@erf=\skip55
+\f@nch@O@olf=\skip56
+\f@nch@O@orf=\skip57
+)
+(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpage.sty
+Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
+)
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count196
+\l__color_backend_stack_int=\count193
 \l__pdf_internal_box=\box47
 )
 
@@ -149,127 +148,37 @@ LaTeX Warning: Unused global option(s):
 (ACE411_MILESTONE_REPORT_Team5.aux)
 \openout1 = `ACE411_MILESTONE_REPORT_Team5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 12.
-LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 1
-2.
-
-(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/cbfonts-fd\lgrcmr.fd
-File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
-)
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-LGR\textpentedeka already defined.
-LGR\textpenteqilioi already defined.
-LGR\textpentemuria already defined.
-LGR\textstigma already defined.
-LGR\textqoppa already defined.
-LGR\texteuro already defined.
-LGR\textperthousand already defined.
-LGR\textquoteleft already defined.
-LGR\textquoteright already defined.
-LGR\u already defined.
-LGR\= already defined.
-LGR\" already defined.
-LGR\textpercent already defined.
-LGR\textperiodcentered already defined.
-LGR\' already defined.
-LGR\textanoteleia already defined.
-LGR\textAlpha already defined.
-LGR\textBeta already defined.
-LGR\textDelta already defined.
-LGR\textEpsilon already defined.
-LGR\textPhi already defined.
-LGR\textGamma already defined.
-LGR\textEta already defined.
-LGR\textIota already defined.
-LGR\textTheta already defined.
-LGR\textKappa already defined.
-LGR\textLambda already defined.
-LGR\textMu already defined.
-LGR\textNu already defined.
-LGR\textOmicron already defined.
-LGR\textPi already defined.
-LGR\textChi already defined.
-LGR\textRho already defined.
-LGR\textSigma already defined.
-LGR\textTau already defined.
-LGR\textUpsilon already defined.
-LGR\textOmega already defined.
-LGR\textXi already defined.
-LGR\textPsi already defined.
-LGR\textZeta already defined.
-LGR\` already defined.
-LGR\textalpha already defined.
-LGR\textbeta already defined.
-LGR\textvarsigma already defined.
-LGR\textdelta already defined.
-LGR\textepsilon already defined.
-LGR\textphi already defined.
-LGR\textgamma already defined.
-LGR\texteta already defined.
-LGR\textiota already defined.
-LGR\texttheta already defined.
-LGR\textkappa already defined.
-LGR\textlambda already defined.
-LGR\textmu already defined.
-LGR\textnu already defined.
-LGR\textomicron already defined.
-LGR\textpi already defined.
-LGR\textchi already defined.
-LGR\textrho already defined.
-LGR\textautosigma already defined.
-LGR\textsigma already defined.
-LGR\texttau already defined.
-LGR\textupsilon already defined.
-LGR\textomega already defined.
-LGR\textxi already defined.
-LGR\textpsi already defined.
-LGR\textzeta already defined.
-LGR\guillemotleft already defined.
-LGR\guillemotright already defined.
-LGR\~ already defined.
-LGR\textemdash already defined.
-LGR\textdigamma already defined.
-LGR\textDigamma already defined.
-LGR\textdexiakeraia already defined.
-LGR\textaristerikeraia already defined.
-
-fontencoding LGR patched
 )
-
-Package utf8x.def Warning: Character(s)159 etc.gotredefinedsomewhere.
-(utf8x.def)                Restoringtoitsutf8x-meaning on input line 12.
-
-
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count197
+\scratchcounter=\count194
 \scratchdimen=\dimen150
 \scratchbox=\box48
-\nofMPsegments=\count198
-\nofMParguments=\count199
+\nofMPsegments=\count195
+\nofMParguments=\count196
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count266
+\MPscratchCnt=\count197
 \MPscratchDim=\dimen151
-\MPnumerator=\count267
-\makeMPintoPDFobject=\count268
+\MPnumerator=\count198
+\makeMPintoPDFobject=\count199
 \everyMPtoPDFconversion=\toks23
 )
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -316,20 +225,23 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+Package lastpage Info: Please have a look at the pageslts package at
+(lastpage)             https://www.ctan.org/pkg/pageslts
+(lastpage)             ! on input line 20.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(57.81621pt, 498.66258pt, 57.81621pt)
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
 * v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=498.66258pt
+* \textwidth=469.75502pt
 * \textheight=650.43001pt
-* \oddsidemargin=-14.45378pt
-* \evensidemargin=-14.45378pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
 * \topmargin=-37.0pt
 * \headheight=12.0pt
 * \headsep=25.0pt
@@ -349,34 +261,48 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 21.
+(Font)              <12> on input line 29.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 21.
+(Font)              <8> on input line 29.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 21.
+(Font)              <6> on input line 29.
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/ucs\uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
+<./images//CPP_AVR_SYMBOL.png, id=1, 603.0028pt x 311.66437pt>
+File: ./images//CPP_AVR_SYMBOL.png Graphic file (type png)
+<use ./images//CPP_AVR_SYMBOL.png>
+Package pdftex.def Info: ./images//CPP_AVR_SYMBOL.png  used on input line 50.
+(pdftex.def)             Requested size: 452.25099pt x 233.7477pt.
+<./images//CPP_STD_17.png, id=3, 600.74437pt x 313.17pt>
+File: ./images//CPP_STD_17.png Graphic file (type png)
+<use ./images//CPP_STD_17.png>
+Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 52.
+(pdftex.def)             Requested size: 450.55717pt x 234.8769pt.
+
 [1
 
 
-{C:/Users/lioud/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
-(ACE411_MILESTONE_REPORT_Team5.aux) ) 
+{C:/Users/lioud/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2 <./images//C
+PP_AVR_SYMBOL.png> <./images//CPP_STD_17.png>] [3]
+
+AED: lastpage setting LastPage
+[4] (ACE411_MILESTONE_REPORT_Team5.aux) ) 
 Here is how much of TeX's memory you used:
- 4049 strings out of 479321
- 67285 string characters out of 2856583
- 375317 words of memory out of 3000000
- 21482 multiletter control sequences out of 15000+600000
+ 3207 strings out of 479321
+ 49046 string characters out of 2856583
+ 373024 words of memory out of 3000000
+ 20643 multiletter control sequences out of 15000+600000
  407416 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,6n,74p,710b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\lioud\AppData\Local\MiKTeX\font
-s/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/lioud/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/lioud/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on ACE411_MILESTONE_REPORT_Team5.pdf (2 pages, 44540 bytes).
+ 68i,10n,74p,710b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\lioud\AppData\Local\MiKTeX\
+fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/lioud/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/lioud/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on ACE411_MILESTONE_REPORT_Team5.pdf (4 pages, 102701 bytes).
 PDF statistics:
- 22 PDF objects out of 1000 (max. 8388607)
+ 33 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
