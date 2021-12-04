@@ -1,0 +1,69 @@
+\documentclass[12pt, a4]{article}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[greek, english]{babel}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{geometry}
+
+\begin{document}
+
+\newgeometry{left=0.8in,right=0.8in,top=1in,bottom=1in}
+\noindent \rule{\textwidth}{3pt}
+\begin{center}
+	{\bf \Large{Milestone 1 Report}}\\
+	ACE411-Embedded Microprocessor Systems \\
+	Winter semester of academic year 2021-2022
+	\rule{\textwidth}{0.2mm} 
+	\begin{tabular}{l r}
+		Kallinteris Andreas:& 2017030066 \\ 
+		Lioudakis Emmanouil:      &2018030020 
+	\end{tabular} \vrule \hspace{3mm}
+	\indent	Team number on eclass:  5
+	\rule{\textwidth}{1pt}
+\end{center}
+
+\section*{STK500 configuration}
+
+\section*{Microchip configuration - Compilation process}
+Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio), some modifications should be done to the default settings of a new C++ project.  \\
+Firstly, add the symbol “AVR” to the compiler’s symbols:\\
+IMAGE 1\\
+Secondly, add the flag “-std=c++17” to the compiler’s flags:\\
+IMAGE 2\\
+The optimization level should be set to “-O2 (Optimize more).\\
+Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of main.cpp). When it is defined, the program will read from TCNT2 instead of UDR and will redi-rect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files.
+
+\section*{Description of the program}
+
+\subsubsection*{The sudoku solving algorithm}
+TO BE COMPLETED BY ANDREAS
+
+\subsubsection*{Controlling the LED progress bar}
+by elioudakis
+
+\subsubsection*{UART}
+by elioudakis
+
+\section*{Resource usage}
+\subsubsection*{Program memory (flash)}
+
+\subsubsection*{Static RAM (SRAM)}
+
+\section*{Simulation in Microchip Studio, using stimuli files}
+X stimuli files are submitted with the code:
+\begin{itemize}
+\item	a, which feeds the program with one sudoku board (the one shown in the assign-ment), waits until the sudoku is solved and sends the results back.
+\item	a, which feeds the program with the same sudoku board as above, but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
+\item	a, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
+\end{itemize}
+
+\section*{Testing the code on real hardware (STK500)}
+\subsubsection*{Using PuTTY}
+\subsubsection*{Using the interface program developed by Odysseas Stavrou}
+
+
+\end{document}
