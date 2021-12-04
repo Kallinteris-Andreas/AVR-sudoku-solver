@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 14:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 14:56
 entering extended mode
 **./ACE411_MILESTONE_REPORT_Team5.tex
 (ACE411_MILESTONE_REPORT_Team5.tex
@@ -148,20 +148,20 @@ LaTeX Warning: Unused global option(s):
 (ACE411_MILESTONE_REPORT_Team5.aux)
 \openout1 = `ACE411_MILESTONE_REPORT_Team5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -227,7 +227,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 20.
+(lastpage)             ! on input line 24.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
@@ -261,23 +261,23 @@ Package lastpage Info: Please have a look at the pageslts package at
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 29.
+(Font)              <12> on input line 33.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 29.
+(Font)              <8> on input line 33.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 29.
+(Font)              <6> on input line 33.
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/ucs\uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
 <./images//CPP_AVR_SYMBOL.png, id=1, 603.0028pt x 311.66437pt>
 File: ./images//CPP_AVR_SYMBOL.png Graphic file (type png)
 <use ./images//CPP_AVR_SYMBOL.png>
-Package pdftex.def Info: ./images//CPP_AVR_SYMBOL.png  used on input line 50.
+Package pdftex.def Info: ./images//CPP_AVR_SYMBOL.png  used on input line 54.
 (pdftex.def)             Requested size: 452.25099pt x 233.7477pt.
 <./images//CPP_STD_17.png, id=3, 600.74437pt x 313.17pt>
 File: ./images//CPP_STD_17.png Graphic file (type png)
 <use ./images//CPP_STD_17.png>
-Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 52.
+Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 56.
 (pdftex.def)             Requested size: 450.55717pt x 234.8769pt.
 
 [1
@@ -288,7 +288,7 @@ PP_AVR_SYMBOL.png> <./images//CPP_STD_17.png>]
 <./images//RESOURCES.png, id=15, 687.31781pt x 215.30438pt>
 File: ./images//RESOURCES.png Graphic file (type png)
 <use ./images//RESOURCES.png>
-Package pdftex.def Info: ./images//RESOURCES.png  used on input line 75.
+Package pdftex.def Info: ./images//RESOURCES.png  used on input line 79.
 (pdftex.def)             Requested size: 469.75502pt x 147.15079pt.
  [3] [4 <./images//RESOURCES.png>] 
 AED: lastpage setting LastPage
@@ -305,7 +305,7 @@ Here is how much of TeX's memory you used:
 fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/lioud/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/lioud/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on ACE411_MILESTONE_REPORT_Team5.pdf (5 pages, 121602 bytes).
+Output written on ACE411_MILESTONE_REPORT_Team5.pdf (5 pages, 123144 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
