@@ -27,6 +27,9 @@
 \end{center}
 
 \section*{STK500 configuration}
+The STK500 development board we have received has installed the ATmega16L microcontroller, which is fully compatible with the ATmega16 used in Microchip Studio. PORTA is fully functional, and therefore connected to the LEDs. Since ISP (In System Programmer) programming mode is used, the following jumpers are set:
+
+
 
 \section*{Microchip configuration - Compilation process}
 Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio), some modifications should be done to the default settings of a new C++ project.  \\
@@ -43,7 +46,7 @@ Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of 
 TO BE COMPLETED BY ANDREAS
 
 \subsubsection*{Controlling the LED progress bar}
-by elioudakis
+To update the LEDs that show the progress of solving, there were two options. The first one was updating the PORTA register every time we change the value of a cell and the second one was refreshing the LEDs with a 30Hz frequency. The former option would consume many clock cycles (because on every PORTA update, its new value is read from flash, which needs 3 clock cycles and), when the latter would consume those 3 cycles only 30 times per second, which is pleasant for the human eye. So, the latter was used by enabling Timer/Counter1 and using its Output Compare Match Interrupt. The interrupt is fired with a 30Hz frequency and it simply updates the value of PORTA.
 
 \subsubsection*{UART}
 by elioudakis

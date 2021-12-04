@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 09:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 10:04
 entering extended mode
 **./ACE411_MILESTONE_REPORT_Team5.tex
 (ACE411_MILESTONE_REPORT_Team5.tex
@@ -146,7 +146,7 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 LaTeX Warning: Unused global option(s):
     [a4].
 
-No file ACE411_MILESTONE_REPORT_Team5.aux.
+(ACE411_MILESTONE_REPORT_Team5.aux)
 \openout1 = `ACE411_MILESTONE_REPORT_Team5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -166,6 +166,7 @@ LaTeX Font Info:    ... okay on input line 12.
 LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 12.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 1
 2.
+
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/cbfonts-fd\lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
@@ -362,18 +363,18 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 {C:/Users/lioud/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
 (ACE411_MILESTONE_REPORT_Team5.aux) ) 
 Here is how much of TeX's memory you used:
- 4047 strings out of 479321
- 67155 string characters out of 2856583
- 373326 words of memory out of 3000000
+ 4049 strings out of 479321
+ 67285 string characters out of 2856583
+ 374317 words of memory out of 3000000
  21482 multiletter control sequences out of 15000+600000
  407416 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,6n,74p,487b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,6n,74p,710b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\lioud\AppData\Local\MiKTeX\font
 s/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/lioud/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/lioud/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on ACE411_MILESTONE_REPORT_Team5.pdf (2 pages, 41745 bytes).
+Output written on ACE411_MILESTONE_REPORT_Team5.pdf (2 pages, 43241 bytes).
 PDF statistics:
  22 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
