@@ -143,9 +143,13 @@ class sudoku{
 		}
 
 		void solve_last_row(){
+			assert(solved_cell_counter == lenght*(lenght-1));
 			const auto y_cord = lenght-1;
-			for (auto i = 0; i!=lenght; i++)
+			for (auto i = 0; i!=lenght; i++){
 				board[y_cord][i] = last_row_possible_value(i);
+				solved_cell_counter++;
+			}
+			assert(solved_cell_counter == lenght*lenght);
 		}
 	public:
 		void set_cell(const int8_t y_cord, const int8_t x_cord, const int8_t value){
