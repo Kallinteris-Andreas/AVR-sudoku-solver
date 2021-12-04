@@ -14,6 +14,7 @@ static void assert([[maybe_unused]] bool a){};
 
 namespace kallinteris{
 	enum class byte : unsigned char {} ;
+
 	// \brief a std::array replacement
 	template<typename T, int length>
 	class array{
@@ -39,6 +40,7 @@ namespace kallinteris{
 			constexpr T get(const int index){return arr[index];}
 			constexpr void set(const int index, const int value){arr[index] = value;}
 	};
+
 
 	// \brief and array of int4_t
 	template<int length>
@@ -86,6 +88,7 @@ namespace kallinteris{
 			}
 	};
 
+
 	// \brief and array of bool
 	template<int length>
 	class bool_array{
@@ -117,8 +120,7 @@ namespace kallinteris{
 	};
 
 
-
-	// \brief a re implemention of std::pair
+	// \brief a reimplemention of std::pair
 	template<typename _T1, typename _T2>
 	struct pair{
 		typedef _T1 first_type;    ///< The type of the `first` member
