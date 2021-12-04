@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 10:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  4 DEC 2021 10:18
 entering extended mode
 **./ACE411_MILESTONE_REPORT_Team5.tex
 (ACE411_MILESTONE_REPORT_Team5.tex
@@ -365,7 +365,7 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 Here is how much of TeX's memory you used:
  4049 strings out of 479321
  67285 string characters out of 2856583
- 374317 words of memory out of 3000000
+ 375317 words of memory out of 3000000
  21482 multiletter control sequences out of 15000+600000
  407416 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -374,7 +374,7 @@ Here is how much of TeX's memory you used:
 s/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/lioud/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/lioud/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on ACE411_MILESTONE_REPORT_Team5.pdf (2 pages, 43241 bytes).
+Output written on ACE411_MILESTONE_REPORT_Team5.pdf (2 pages, 44540 bytes).
 PDF statistics:
  22 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

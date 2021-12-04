@@ -27,9 +27,14 @@
 \end{center}
 
 \section*{STK500 configuration}
-The STK500 development board we have received has installed the ATmega16L microcontroller, which is fully compatible with the ATmega16 used in Microchip Studio. PORTA is fully functional, and therefore connected to the LEDs. Since ISP (In System Programmer) programming mode is used, the following jumpers are set:
-
-
+The STK500 development board we have received has installed the ATmega16L microcontroller, which is fully compatible with the ATmega16 used in Microchip Studio. PORTA is fully functional, and therefore connected to the LEDs. An external crystal of 10MHz is used. Since ISP (In System Programmer) programming mode is used, the following jumpers are mounted:
+\begin{description}
+\item[VTARGET] mounted, to use the on-boars supply voltage.
+\item[AREF] mounted, to use the AVR's AREF as reference volatge for the A/D converter on AVR. Although the A/D converter is not used in this project, the jumper is mounted, because this is the default setting.
+\item[RESET] mounted, to be able to use the on-board reset button.
+\item[XTAL1] mounted, to use the external crystal.
+\item[OSCSEL] mounted to pins 2 and 3 to use the on-board crystal signal as clock signal.
+\end{description}
 
 \section*{Microchip configuration - Compilation process}
 Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio), some modifications should be done to the default settings of a new C++ project.  \\
