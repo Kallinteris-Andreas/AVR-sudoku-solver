@@ -107,7 +107,7 @@ class sudoku{
 			if(solving_barrier == false) // Added by elioudakis on 1 Dec. to support B command
 				return false;
 			
-			if (start_index < 0 or start_index > lenght*lenght)
+			if (start_index < 0 or start_index > lenght*(lenght-1))
 				__builtin_unreachable();
 
 			for(int8_t i = start_index; i!=lenght*(lenght-1); i++){
@@ -138,12 +138,12 @@ class sudoku{
 
 			//this place is only reached the board has be solved
 			assert(solved_cell_counter != 0);
-			assert(solved_cell_counter == lenght*(lenght-1));
+			assert(solved_cell_counter >= lenght*(lenght-1));
 			return true;
 		}
 
 		void solve_last_row(){
-			assert(solved_cell_counter == lenght*(lenght-1));
+			assert(solved_cell_counter >= lenght*(lenght-1));
 			const auto y_cord = lenght-1;
 			for (auto i = 0; i!=lenght; i++){
 				board[y_cord][i] = last_row_possible_value(i);
