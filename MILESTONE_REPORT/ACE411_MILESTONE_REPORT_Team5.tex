@@ -8,6 +8,8 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[english]{babel}
 
+\usepackage{siunitx}
+
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 
@@ -20,6 +22,16 @@
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \cfoot{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+
+\usepackage{hyperref}                           
+\usepackage{xcolor}                             
+\hypersetup{                                     
+	colorlinks,                                    
+	linkcolor={red!50!black},                 
+	citecolor={blue!50!black},                  
+	urlcolor={blue!80!black}
+}                                                
+\usepackage{xurl}  
 
 \begin{document}
 
@@ -38,25 +50,6 @@
 	\rule{\textwidth}{1pt}
 \end{center}
 
-\section*{STK500 configuration}
-The STK500 development board we have received has installed the ATmega16L microcontroller, which is fully compatible with the ATmega16 used in Microchip Studio. PORTA is fully functional, and therefore connected to the LEDs. An external crystal of 10MHz is used. Since ISP (In System Programmer) programming mode is used, the following jumpers are mounted:
-\begin{description}
-\item[VTARGET] mounted, to use the on-boars supply voltage.
-\item[AREF] mounted, to use the AVR's AREF as reference volatge for the A/D converter on AVR. Although the A/D converter is not used in this project, the jumper is mounted, because this is the default setting.
-\item[RESET] mounted, to be able to use the on-board reset button.
-\item[XTAL1] mounted, to use the external crystal.
-\item[OSCSEL] mounted to pins 2 and 3 to use the on-board crystal signal as clock signal.
-\end{description}
-
-\section*{Microchip configuration - Compilation process}
-Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio), some modifications should be done to the default settings of a new C++ project.  \\
-Firstly, add the symbol “AVR” to the compiler’s symbols:\\
-\includegraphics[scale=0.75]{CPP_AVR_SYMBOL.png} \\
-Secondly, add the flag “-std=c++17” to the compiler’s flags:\\
-\includegraphics[scale=0.75]{CPP_STD_17.png}  \\
-The optimization level should be set to “-O2 (Optimize more)''.\\
-Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of main.cpp). When it is defined, the program will read from TCNT2 instead of UDR and will redi-rect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files.
-
 \section*{Description of the program}
 
 \subsubsection*{The sudoku solving algorithm}
@@ -73,6 +66,16 @@ It is important to note that in the case of ''play'' command, the interrupt serv
 
 \subsubsection*{Transmitting to the serial port}
 To transmit a character, a polling procedure is used. A loop is done to wait until the UDR register to get empty and then we write the characted to be transmitted. Practically, in this project polling is not actually done. The baud rate is extremely low, so the UDR register will be already empty, every time we want to transmit a character (every 10000 clock cycles approximately).
+
+\section*{Microchip configuration - Compilation process}
+Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio), some modifications should be done to the default settings of a new C++ project.  \\
+Firstly, add the symbol “AVR” to the compiler’s symbols:\\
+\includegraphics[scale=0.75]{CPP_AVR_SYMBOL.png} \\
+Secondly, add the flag “-std=c++17” to the compiler’s flags:\\
+\includegraphics[scale=0.75]{CPP_STD_17.png}  \\
+The optimization level should be set to “-O2 (Optimize more)''.\\
+Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of main.cpp). When it is defined, the program will read from TCNT2 instead of UDR and will redi-rect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files.
+
 
 \section*{Resource usage}
 After compiling the code, the following resource usage is reported: \\
@@ -106,13 +109,35 @@ Using the Microchip Studio debugging tools (Run To Cursor and Step Into) and by 
 Three tests have been done on hardware using PuTTY. The content of the PuTTY terminal is provided in the following files:
 \begin{itemize}
 \item simple\_solve\_tty.log, which feeds the program with one sudoku board (the one shown in the assignment), waits until the sudoku is solved and sends the results back.
-\item break\_debug\_tty.log, which feeds the program with a difficult sudoku board from https://www.websudoku.com/images/example-steps.html (to slow the solving process and have the time to give manually a break command), but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
+\item break\_debug\_tty.log, which feeds the program with a difficult sudoku board from \url{https://www.websudoku.com/images/example-steps.html} (to slow the solving process and have the time to give manually a break command), but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
 \item two\_sudokus\_tty.log, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
 \end{itemize}
 On each file, an identifier is placed in the start of each line, to show who sent this command ([PC] or [STK]).\\
 Important note: While configuring the serial connection in PuTTY the flow control can be set either to ``None'', or to ``XON/XOFF'' without any problem. Even when using XON/XOFF, the baud rate is so low, so the buffers of the two communicating devices (the PC and the STK) will never overflow.
 
 \subsubsection*{Using the interface program developed by Odysseas Stavrou}
+Although the program has still some bugs (reported to Odysseas) and part of the functionality cannot be tested with it (such as the break command), it can show useful statistics for the sudoku solver. It was used to find the solving time of many sudokus. Five random sudokus of each difficulty level were solved, giving the following results:
+\begin{center}
+\begin{tabular}{ |l|c|c|c|c|c| } 
+ \hline
+              & Game 1  & Game 2 & Game 3 & Game 4 & Game 5 \\  \hline
+ Easy      &  \SI{57}{\micro\second}  &   \SI{33.6}{\micro\second}   & \SI{62.8}{\micro\second}  &\SI{22.4}{\micro\second}     &\SI{84.3}{\micro\second} \\  \hline
+ Medium &   \SI{7.2512}{\milli\second}  &   \SI{72.5}{\micro\second}   & \SI{2.4176}{\milli\second}    & \SI{74.2}{\micro\second}  &\SI{81.7}{\micro\second}  \\  \hline
+ Hard     &   \SI{8.6831}{\milli\second}    &    \SI{51.1}{\micro\second}  & \SI{16.447}{\milli\second}   & \SI{63.6}{\micro\second}  & \SI{53.9}{\micro\second}    \\  \hline
+ Ultra     &  \SI{432.3558}{\milli\second}   &    \SI{2.1232918}{\second}   & \SI{53.7178259}{\second}  & \SI{200.7779}{\milli\second}   & \SI{7.2966281}{\second}    \\  \hline
+\end{tabular}
+\end{center}
+
+
+\section*{STK500 configuration}
+The STK500 development board we have received has installed the ATmega16L microcontroller, which is fully compatible with the ATmega16 used in Microchip Studio. PORTA is fully functional, and therefore connected to the LEDs. An external crystal of 10MHz is used. Since ISP (In System Programmer) programming mode is used, the following jumpers are mounted:
+\begin{description}
+\item[VTARGET] mounted, to use the on-boars supply voltage.
+\item[AREF] mounted, to use the AVR's AREF as reference volatge for the A/D converter on AVR. Although the A/D converter is not used in this project, the jumper is mounted, because this is the default setting.
+\item[RESET] mounted, to be able to use the on-board reset button.
+\item[XTAL1] mounted, to use the external crystal.
+\item[OSCSEL] mounted to pins 2 and 3 to use the on-board crystal signal as clock signal.
+\end{description}
 
 
 \end{document}
