@@ -106,10 +106,11 @@ Using the Microchip Studio debugging tools (Run To Cursor and Step Into) and by 
 Three tests have been done on hardware using PuTTY. The content of the PuTTY terminal is provided in the following files:
 \begin{itemize}
 \item simple\_solve\_tty.log, which feeds the program with one sudoku board (the one shown in the assignment), waits until the sudoku is solved and sends the results back.
-\item break\_debug\_tty.log, which feeds the program with a difficult sudoku board (to slow the solving process and have the time to give manually a break command), but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
+\item break\_debug\_tty.log, which feeds the program with a difficult sudoku board from https://www.websudoku.com/images/example-steps.html (to slow the solving process and have the time to give manually a break command), but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
 \item two\_sudokus\_tty.log, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
 \end{itemize}
-On each file, an identifier is placed in the start of each line, to show who sent this command ([PC] or [STK]).
+On each file, an identifier is placed in the start of each line, to show who sent this command ([PC] or [STK]).\\
+Important note: While configuring the serial connection in PuTTY the flow control can be set either to ``None'', or to ``XON/XOFF'' without any problem. Even when using XON/XOFF, the baud rate is so low, so the buffers of the two communicating devices (the PC and the STK) will never overflow.
 
 \subsubsection*{Using the interface program developed by Odysseas Stavrou}
 
