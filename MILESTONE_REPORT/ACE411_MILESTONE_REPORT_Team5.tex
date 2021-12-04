@@ -62,7 +62,7 @@ Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of 
 *TO BE COMPLETED BY ANDREAS
 
 \subsubsection*{Controlling the LED progress bar}
-To update the LEDs that show the progress of solving, there were two options. The first one was updating the PORTA register every time we change the value of a cell and the second one was refreshing the LEDs with a 30Hz frequency. The former option would consume many clock cycles (because on every PORTA update, its new value is read from flash, which needs 3 clock cycles and), when the latter would consume those 3 cycles only 30 times per second, which is pleasant for the human eye. So, the latter was used by enabling Timer/Counter1 and using its Output Compare Match Interrupt. The interrupt is fired with a 30Hz frequency and it simply updates the value of PORTA.
+To update the LEDs that show the progress of solving, there were two options. The first one was updating the PORTA register every time we change the value of a cell and the second one was refreshing the LEDs with a 30Hz frequency. The former option would consume many clock cycles (because on every PORTA update, its new value is read from flash, which needs 3 clock cycles many times each second), when the latter would consume those 3 cycles only 30 times per second, which is pleasant for the human eye. So, the latter was used by enabling Timer/Counter1 and using its Output Compare Match Interrupt. The interrupt is fired with a 30Hz frequency and it simply updates the value of PORTA.
 
 \subsubsection*{USART interfacing}
 As the assignment states, the serial port is configured at 9600 baud, 8 data bits, 1 stop bit and no parity.
@@ -74,9 +74,19 @@ It is important to note that in the case of ''play'' command, the interrupt serv
 To transmit a character, a polling procedure is used. A loop is done to wait until the UDR register to get empty and then we write the characted to be transmitted. Practically, in this project polling is not actually done. The baud rate is extremely low, so the UDR register will be already empty, every time we want to transmit a character (every 10000 clock cycles approximately).
 
 \section*{Resource usage}
+After compiling the code, the following resource usage is reported: \\
+\includegraphics[width = \textwidth]{RESOURCES.png} 
+
 \subsubsection*{Program memory (flash)}
+Except from the code, two arrays (look up tables) are stored in flash: 
+\begin{itemize}
+\item The led\_bar\_LUT (defined in sudoku.h), which contains the decoding data for the LED progress bar (holds 82 bytes, in addresses 0x .. 0x).
+\item The div\_9\_LUT (defined in LUT.hpp), which contains the ******** (holds 162 bytes, in adresses 0x .. 0x).
+\end{itemize}
+The rest bytes (6352-82-162 = 6108) are reserved by the code instructions.
 
 \subsubsection*{Static RAM (SRAM)}
+
 
 \section*{Simulation in Microchip Studio, using stimuli files}
 X stimuli files are submitted with the code:
