@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  5 DEC 2021 16:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  5 DEC 2021 16:27
 entering extended mode
 **./ACE411_MILESTONE_REPORT_Team5.tex
 (ACE411_MILESTONE_REPORT_Team5.tex
@@ -370,9 +370,7 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-)
-Package hyperref Info: Option `colorlinks' set `true' on input line 33.
- (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty
+) (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty
 Package: xurl 2020/12/30 v 0.09a modify URL breaks
 )
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudoc
@@ -498,7 +496,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
 (lastpage)             ! on input line 51.
-Package hyperref Info: Link coloring ON on input line 51.
+Package hyperref Info: Link coloring OFF on input line 51.
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -564,35 +562,35 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/ucs\uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-<./images//CPP_AVR_SYMBOL.png, id=26, 603.0028pt x 311.66437pt>
+<./images//CPP_AVR_SYMBOL.png, id=25, 603.0028pt x 311.66437pt>
 File: ./images//CPP_AVR_SYMBOL.png Graphic file (type png)
 <use ./images//CPP_AVR_SYMBOL.png>
-Package pdftex.def Info: ./images//CPP_AVR_SYMBOL.png  used on input line 156.
+Package pdftex.def Info: ./images//CPP_AVR_SYMBOL.png  used on input line 179.
 (pdftex.def)             Requested size: 452.25099pt x 233.7477pt.
-<./images//CPP_STD_17.png, id=28, 600.74437pt x 313.17pt>
+<./images//CPP_STD_17.png, id=27, 600.74437pt x 313.17pt>
 File: ./images//CPP_STD_17.png Graphic file (type png)
 <use ./images//CPP_STD_17.png>
-Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 158.
+Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 181.
 (pdftex.def)             Requested size: 450.55717pt x 234.8769pt.
 
 [3 <./images//CPP_AVR_SYMBOL.png>]
 <./images//RESOURCES.png, id=37, 687.31781pt x 215.30438pt>
 File: ./images//RESOURCES.png Graphic file (type png)
 <use ./images//RESOURCES.png>
-Package pdftex.def Info: ./images//RESOURCES.png  used on input line 165.
+Package pdftex.def Info: ./images//RESOURCES.png  used on input line 188.
 (pdftex.def)             Requested size: 469.75502pt x 147.15079pt.
- [4 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [5] 
+ [4 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [5] [6] 
 AED: lastpage setting LastPage
-[6] (ACE411_MILESTONE_REPORT_Team5.aux)
+[7] (ACE411_MILESTONE_REPORT_Team5.aux)
 Package rerunfilecheck Info: File `ACE411_MILESTONE_REPORT_Team5.out' has not c
 hanged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13224 strings out of 479321
- 231488 string characters out of 2856583
- 556604 words of memory out of 3000000
- 30466 multiletter control sequences out of 15000+600000
+ 13226 strings out of 479321
+ 231495 string characters out of 2856583
+ 557609 words of memory out of 3000000
+ 30465 multiletter control sequences out of 15000+600000
  409806 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,12n,75p,729b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -604,9 +602,9 @@ type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/lioud/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on ACE411_MILESTONE_REPORT_Team5.pdf (6 pages, 168061 bytes).
+Output written on ACE411_MILESTONE_REPORT_Team5.pdf (7 pages, 166945 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
+ 103 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

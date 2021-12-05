@@ -2,7 +2,7 @@
 % WARNING: Two pdflatex runs should be done each time, to update correctly LastPage    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[12pt, a4]{article}
+\documentclass[12pt, a4, hidelinks]{article}
 
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
@@ -26,8 +26,8 @@
 \usepackage{hyperref}                           
 \usepackage{xcolor}                             
 \hypersetup{                                     
-	colorlinks,                                    
-	linkcolor={red!50!black},                 
+	%colorlinks,                                    
+	%linkcolor={red!50!black},                 
 	citecolor={blue!50!black},                  
 	urlcolor={blue!80!black}
 }                                                
@@ -71,12 +71,12 @@ The main function constists of a main loop that call the sudoku solving function
 \begin{center}
 \begin{algorithmic}
 \Function{main}{} \\
-init(); \\
-\noindent sei();
-\noindent \While{$true$} 
-    \If{$ solve\_barrier is true $}
-		\If{$ solved $}
-        \State $solve\_barrier \gets false$
+init() \\
+\noindent enable global interrupts
+\noindent \While{true} 
+    \If{ solve\_barrier is true }
+		\If{ solved }
+        \State solve\_barrier $\gets$ false
 \EndIf
 \EndIf
 \EndWhile
@@ -84,7 +84,7 @@ init(); \\
 \end{algorithmic}
 \end{center}
 
-The interrupt handler to receive data from the serial port:
+\noindent The interrupt handler to receive data from the serial port:
 \begin{center}
 \begin{algorithmic}
 \Function{USART-ISR}{}
@@ -127,13 +127,36 @@ The interrupt handler to receive data from the serial port:
 		\If{command is N}
 			store X, Y or VALUE (based on the arguments counter)
 		\ElsIf{command is D}
-			store X, Y (based on the arguments counter)
+			store X or Y (based on the arguments counter)
 		\EndIf
 	\EndCase 
 \EndSwitch
 \EndFunction
 \end{algorithmic}
-\end{center}			 
+\end{center}		
+
+\noindent The interrupt handler to update the LEDs:
+\begin{center}
+\begin{algorithmic}
+\Function{TIMER1-COMPARE\_MATCH-ISR}{} \\
+	\hskip4.0em update PORTA
+\EndFunction
+\end{algorithmic}
+\end{center}	
+
+\noindent The init function:
+\begin{center}
+\begin{algorithmic}
+\Function{init}{} \\
+	\hskip4.0em set all the counters to their initial values \\
+	\hskip4.0em unset all the flags \\
+	\hskip4.0em initialize PORTA \\
+	\hskip4.0em initialize TIMER1 \\
+	\hskip4.0em initialize the sudoku board \\
+	\hskip4.0em initialize the serial port
+\EndFunction
+\end{algorithmic}
+\end{center}	 
 
 \subsubsection*{The sudoku solving algorithm}
 *TO BE COMPLETED BY ANDREAS
