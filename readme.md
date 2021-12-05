@@ -22,3 +22,18 @@ TODO: 1) Migrate to C++, 2)use the fast algorithm, 3) download to STK
 
 
 
+# build instructions
+
+## using gnu-toolchain on linux
+
+```
+git clone https://github.com/apcountryman/toolchain-avr-gcc.git
+cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=../toolchain-avr-gcc/toolchain.cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && make
+```
+
+
+
+## using microchip studio
+
+make sure to use gnu c++ compiler (g++) and provide the flags `-DAVR --std=c++17`
