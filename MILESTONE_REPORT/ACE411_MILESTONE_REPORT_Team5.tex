@@ -82,7 +82,8 @@ Firstly, add the symbol “AVR” to the compiler’s symbols:\\
 Secondly, add the flag “-std=c++17” to the compiler’s flags:\\
 \includegraphics[scale=0.75]{CPP_STD_17.png}  \\
 The optimization level should be set to “-O2 (Optimize more)''.\\
-Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of main.cpp). When it is defined, the program will read from TCNT2 instead of UDR and will redi-rect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files.
+Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of main.cpp). When it is defined, the program will read from TCNT2 instead of UDR and will redi-rect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files. \\
+The makefile should not be used with Microchip Studio, but only when using gnu-toolchain on linux system.
 
 
 \section*{Resource usage}
