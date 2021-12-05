@@ -22,7 +22,8 @@
 #define BAUD 9600                  /* Data rate of 9600 BAUD for USART */
 #define MYUBRR ((F_CPU/16/BAUD)-1) /* Calculate UBRR's value */
 
-#define SIMULATION_MODE  /* If defined, simulation mode is enabled. USART input is taken from TCNT2 and USART output is redirected to TCNT0 */
+//#define SIMULATION_MODE  /* If defined, simulation mode is enabled. USART input is taken from TCNT2 and USART output is redirected to TCNT0 */
+                           /* Uncomment it to define */
 
 /************************************************************************/
 /* Global variables declaration                                         */

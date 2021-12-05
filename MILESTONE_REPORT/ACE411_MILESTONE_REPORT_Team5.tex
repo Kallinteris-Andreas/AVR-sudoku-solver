@@ -82,7 +82,7 @@ Firstly, add the symbol “AVR” to the compiler’s symbols:\\
 Secondly, add the flag “-std=c++17” to the compiler’s flags:\\
 \includegraphics[scale=0.75]{CPP_STD_17.png}  \\
 The optimization level should be set to “-O2 (Optimize more)''.\\
-Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of main.cpp). When it is defined, the program will read from TCNT2 instead of UDR and will redi-rect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files. \\
+Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of sudoku.h). When it is defined, the program will read from TCNT2 instead of UDR and will redirect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files. \\
 The makefile should not be used with Microchip Studio, but only when using gnu-toolchain on linux system.
 
 
@@ -96,7 +96,7 @@ Except from the code, two arrays (look up tables) are stored in flash:
 \item The led\_bar\_LUT (defined in sudoku.h), which contains the decoding data for the LED progress bar (holds 82 bytes).
 \item The div\_9\_LUT (defined in LUT.hpp), which contains pre-calculated value to make the solving proccess faster (holds 162 bytes).
 \end{itemize}
-The rest bytes (6800-82-162 = 6556) are reserved by the code instructions.
+The rest bytes (6796-82-162 = 6552) are reserved by the code instructions.
 
 \subsubsection*{Static RAM (SRAM)}
 The global variables used to control the serial port are the struct of flags for the received character(11 bits or 2 bytes), the union for the X counters (1 byte), the union for the Y counters (1 byte) and the counter for the arguments (1 byte). The rest of the 88 bytes are used for the base\_board object (an instance of the sudoku class). Inside this object is stored the 9x9 sudoku grid as a two dimensioned array of unsigned integers. \\
@@ -118,7 +118,7 @@ Using the Microchip Studio debugging tools (Run To Cursor and Step Into) and by 
 Three tests have been done on hardware using PuTTY. The content of the PuTTY terminal is provided in the following files (in the folder PUTTY\_LOGS):
 \begin{itemize}
 \item simple\_solve\_tty.log, which feeds the program with one sudoku board (the one shown in the assignment), waits until the sudoku is solved and sends the results back.
-\item break\_debug\_tty.log, which feeds the program with a difficult sudoku board from \url{https://www.websudoku.com/images/example-steps.html} (to slow the solving process and have the time to give manually a break command), but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
+\item break\_debug\_tty.log, which feeds the program with a difficult sudoku board (generated with the interface program, to slow the solving process and have the time to give manually a break command), but while solving, a “break” command stops the solving process, and using the “debug” command, the contents of some cells are read.
 \item two\_sudokus\_tty.log, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
 \end{itemize}
 On each file, an identifier is placed in the start of each line, to show who sent this command ([PC] or [STK]).\\
@@ -130,10 +130,10 @@ Although the program has still some bugs (reported to Odysseas) and part of the 
 \begin{tabular}{ |l|c|c|c|c|c| } 
  \hline
               & Game 1  & Game 2 & Game 3 & Game 4 & Game 5 \\  \hline
- Easy      &  \SI{57}{\micro\second}  &   \SI{33.6}{\micro\second}   & \SI{62.8}{\micro\second}  &\SI{22.4}{\micro\second}     &\SI{84.3}{\micro\second} \\  \hline
- Medium &   \SI{7.2512}{\milli\second}  &   \SI{72.5}{\micro\second}   & \SI{2.4176}{\milli\second}    & \SI{74.2}{\micro\second}  &\SI{81.7}{\micro\second}  \\  \hline
- Hard     &   \SI{8.6831}{\milli\second}    &    \SI{51.1}{\micro\second}  & \SI{16.447}{\milli\second}   & \SI{63.6}{\micro\second}  & \SI{53.9}{\micro\second}    \\  \hline
- Ultra     &  \SI{432.3558}{\milli\second}   &    \SI{2.1232918}{\second}   & \SI{53.7178259}{\second}  & \SI{200.7779}{\milli\second}   & \SI{7.2966281}{\second}    \\  \hline
+ Easy      &  \SI{31.7}{\micro\second}  &   \SI{43.5}{\micro\second}   & \SI{151.1}{\micro\second}  &\SI{52.1669}{\micro\second}     &\SI{76.2}{\micro\second} \\  \hline
+ Medium &   \SI{39.1}{\micro\second}  &   \SI{68}{\micro\second}   & \SI{10.2698}{\milli\second}    & \SI{43.9}{\micro\second}  &\SI{22.8}{\micro\second}  \\  \hline
+ Hard     &   \SI{59.5}{\micro\second}    &    \SI{77.1334}{\milli\second}  & \SI{37.7}{\micro\second}   & \SI{33.4}{\micro\second}  & \SI{15.6933}{\milli\second}    \\  \hline
+ Ultra     &  \SI{23.6088}{\second}   &    \SI{3.2823}{\second}   & \SI{72.0722}{\second}  & \SI{408.7206}{\milli\second}   & \SI{7.1807}{\second}    \\  \hline
 \end{tabular}
 \end{center}
 In the final report (which will be submitted on the 22\textsuperscript{th} of December, 100 boards of each difficulty level will be solved, to provide an accurate statistic performance analysis of the program. This procedure is postponed for now, because of the interface's bugs.
