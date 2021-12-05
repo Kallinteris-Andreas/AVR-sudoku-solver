@@ -1,10 +1,10 @@
-Semester project - Sudoku on Atmel AVR
-Course               : HRY411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22
-Students             : Kallinteris Andreas, 2017030066
-                     : Lioudakis Emmanouil, 2018030020
-Device in simulation : ATmega16 (WARNING: If another device is used, some registers may differ a bit)
-Device in STK500     : ATmega16L - fully compatible with ATmega16
-IDE used             : Microchip Studio 7
+# Semester project - Sudoku on Atmel AVR
+Course               : HRY411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22 \\
+Students             : Kallinteris Andreas, 2017030066 \\
+                     : Lioudakis Emmanouil, 2018030020 \\
+Device in simulation : ATmega16 (WARNING: If another device is used, some registers may differ a bit) \\
+Device in STK500     : ATmega16L - fully compatible with ATmega16 \\
+IDE used             : Microchip Studio 7 \\
 CPU freq             : 10 MHz, using an oscillator in STK500 (If changed, things such as timer init. value and UBRR for the serial port should change too)
 
 # build instructions
