@@ -146,7 +146,7 @@ class sudoku{
 			assert(solved_cell_counter >= lenght*(lenght-1));
 			const auto y_cord = lenght-1;
 			for (auto i = 0; i!=lenght; i++){
-				if (board[y_cord][i] != empty_cell){
+				if (board[y_cord][i] == empty_cell){
 					board[y_cord][i] = last_row_possible_value(i);
 					solved_cell_counter++;
 				}
