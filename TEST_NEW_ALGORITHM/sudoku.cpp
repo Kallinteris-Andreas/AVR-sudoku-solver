@@ -72,7 +72,7 @@ class sudoku{
 		 * \returns the an integer indicating which number is missing from last column in \c x_cord
 		 */
 		[[gnu::pure, nodiscard]]
-		[[gnu::optimize(3)]]
+		[[gnu::optimize(1)]]
 		uint8_t last_row_possible_value(const int8_t x_cord){
 			if (x_cord < 0 or x_cord > lenght)
 				__builtin_unreachable();
@@ -146,8 +146,10 @@ class sudoku{
 			assert(solved_cell_counter >= lenght*(lenght-1));
 			const auto y_cord = lenght-1;
 			for (auto i = 0; i!=lenght; i++){
-				board[y_cord][i] = last_row_possible_value(i);
-				solved_cell_counter++;
+				if (board[y_cord][i] != empty_cell){
+					board[y_cord][i] = last_row_possible_value(i);
+					solved_cell_counter++;
+				}
 			}
 			assert(solved_cell_counter == lenght*lenght);
 		}
