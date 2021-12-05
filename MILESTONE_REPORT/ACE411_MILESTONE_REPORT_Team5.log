@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  5 DEC 2021 18:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  5 DEC 2021 18:03
 entering extended mode
 **./ACE411_MILESTONE_REPORT_Team5.tex
 (ACE411_MILESTONE_REPORT_Team5.tex
@@ -373,30 +373,6 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ) (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty
 Package: xurl 2020/12/30 v 0.09a modify URL breaks
 )
-(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudoc
-ode.sty
-Package: algpseudocode 
- (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
-(C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algorithmi
-cx.sty
-Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
-
-Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count287
-\c@ALG@rem=\count288
-\c@ALG@nested=\count289
-\ALG@tlm=\skip65
-\ALG@thistlm=\skip66
-\c@ALG@Lnr=\count290
-\c@ALG@blocknr=\count291
-\c@ALG@storecount=\count292
-\c@ALG@tmpcounter=\count293
-\ALG@tmplength=\skip67
-)
-Document Style - pseudocode environments for use with the `algorithmicx' style
-)
 
 LaTeX Warning: Unused global option(s):
     [a4].
@@ -404,24 +380,24 @@ LaTeX Warning: Unused global option(s):
 (ACE411_MILESTONE_REPORT_Team5.aux)
 \openout1 = `ACE411_MILESTONE_REPORT_Team5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -437,16 +413,16 @@ Dictionary: translator-basic-dictionary, Language: English
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count294
+\scratchcounter=\count287
 \scratchdimen=\dimen169
 \scratchbox=\box57
-\nofMPsegments=\count295
-\nofMParguments=\count296
+\nofMPsegments=\count288
+\nofMParguments=\count289
 \everyMPshowfont=\toks24
-\MPscratchCnt=\count297
+\MPscratchCnt=\count290
 \MPscratchDim=\dimen170
-\MPnumerator=\count298
-\makeMPintoPDFobject=\count299
+\MPnumerator=\count291
+\makeMPintoPDFobject=\count292
 \everyMPtoPDFconversion=\toks25
 )
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -495,8 +471,8 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 51.
-Package hyperref Info: Link coloring OFF on input line 51.
+(lastpage)             ! on input line 36.
+Package hyperref Info: Link coloring OFF on input line 36.
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -507,22 +483,22 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count300
+\c@section@level=\count293
 )
-LaTeX Info: Redefining \ref on input line 51.
-LaTeX Info: Redefining \pageref on input line 51.
-LaTeX Info: Redefining \nameref on input line 51.
+LaTeX Info: Redefining \ref on input line 36.
+LaTeX Info: Redefining \pageref on input line 36.
+LaTeX Info: Redefining \nameref on input line 36.
  (ACE411_MILESTONE_REPORT_Team5.out)
 (ACE411_MILESTONE_REPORT_Team5.out)
 \@outlinefile=\write3
 \openout3 = `ACE411_MILESTONE_REPORT_Team5.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 51.
+(Font)              <12> on input line 36.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 51.
+(Font)              <8> on input line 36.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 51.
+(Font)              <6> on input line 36.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
@@ -558,55 +534,58 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 
-{C:/Users/lioud/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
+{C:/Users/lioud/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 (C:\Users\lioud\AppData\Local\Programs\MiKTeX\tex/latex/ucs\uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-<./images//CPP_AVR_SYMBOL.png, id=25, 603.0028pt x 311.66437pt>
+<./images//CPP_AVR_SYMBOL.png, id=18, 603.0028pt x 311.66437pt>
 File: ./images//CPP_AVR_SYMBOL.png Graphic file (type png)
 <use ./images//CPP_AVR_SYMBOL.png>
-Package pdftex.def Info: ./images//CPP_AVR_SYMBOL.png  used on input line 186.
+Package pdftex.def Info: ./images//CPP_AVR_SYMBOL.png  used on input line 80.
 (pdftex.def)             Requested size: 452.25099pt x 233.7477pt.
-<./images//CPP_STD_17.png, id=27, 600.74437pt x 313.17pt>
+<./images//CPP_STD_17.png, id=20, 600.74437pt x 313.17pt>
 File: ./images//CPP_STD_17.png Graphic file (type png)
 <use ./images//CPP_STD_17.png>
-Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 188.
+Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 82.
 (pdftex.def)             Requested size: 450.55717pt x 234.8769pt.
 
-[3]
-<./images//RESOURCES.png, id=37, 687.31781pt x 260.47313pt>
+[2 <./images//CPP_AVR_SYMBOL.png>]
+<./images//RESOURCES.png, id=29, 687.31781pt x 260.47313pt>
 File: ./images//RESOURCES.png Graphic file (type png)
 <use ./images//RESOURCES.png>
-Package pdftex.def Info: ./images//RESOURCES.png  used on input line 195.
+Package pdftex.def Info: ./images//RESOURCES.png  used on input line 89.
 (pdftex.def)             Requested size: 469.75502pt x 178.02159pt.
- [4 <./images//CPP_AVR_SYMBOL.png> <./images//CPP_STD_17.png>] [5 <./images//RE
-SOURCES.png>] [6] 
+ [3 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [4] [5] 
 AED: lastpage setting LastPage
-[7] (ACE411_MILESTONE_REPORT_Team5.aux)
+[6] (ACE411_MILESTONE_REPORT_Team5.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `ACE411_MILESTONE_REPORT_Team5.out' has not c
 hanged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13228 strings out of 479321
- 231517 string characters out of 2856583
- 555609 words of memory out of 3000000
- 30465 multiletter control sequences out of 15000+600000
- 409806 words of font info for 49 fonts, out of 8000000 for 9000
+ 12645 strings out of 479321
+ 222916 string characters out of 2856583
+ 548895 words of memory out of 3000000
+ 29894 multiletter control sequences out of 15000+600000
+ 409505 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,12n,75p,729b,945s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\lioud\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1200.pk><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmcsc10.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/lioud/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/lioud/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on ACE411_MILESTONE_REPORT_Team5.pdf (7 pages, 182144 bytes).
+ 71i,12n,75p,729b,897s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{page.7} has been referenced but does not exist, r
+eplaced by a fixed one
+
+ <C:\Users\lioud\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm12
+00.pk><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmbx12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmmi12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/lioud/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on ACE411_MILESTONE_REPORT_Team5.pdf (6 pages, 159486 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
+ 95 PDF objects out of 1000 (max. 8388607)
+ 25 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
