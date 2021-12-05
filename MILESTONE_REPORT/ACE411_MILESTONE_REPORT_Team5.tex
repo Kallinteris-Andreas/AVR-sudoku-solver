@@ -2,7 +2,7 @@
 % WARNING: Two pdflatex runs should be done each time, to update correctly LastPage    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[12pt, a4]{article}
+\documentclass[12pt, a4, hidelinks]{article}
 
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
@@ -26,12 +26,27 @@
 \usepackage{hyperref}                           
 \usepackage{xcolor}                             
 \hypersetup{                                     
-	colorlinks,                                    
-	linkcolor={red!50!black},                 
+	%colorlinks,                                    
+	%linkcolor={red!50!black},                 
 	citecolor={blue!50!black},                  
 	urlcolor={blue!80!black}
 }                                                
 \usepackage{xurl}  
+
+\usepackage{algpseudocode}
+
+%https://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic
+% New definitions
+\algnewcommand\algorithmicswitch{\textbf{switch}}
+\algnewcommand\algorithmiccase{\textbf{case}}
+\algnewcommand\algorithmicassert{\texttt{assert}}
+\algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
+% New "environments"
+\algdef{SE}[SWITCH]{Switch}{EndSwitch}[1]{\algorithmicswitch\ #1\ \algorithmicdo}{\algorithmicend\ \algorithmicswitch}%
+\algdef{SE}[CASE]{Case}{EndCase}[1]{\algorithmiccase\ #1}{\algorithmicend\ \algorithmiccase}%
+\algtext*{EndSwitch}%
+\algtext*{EndCase}%
+
 
 \begin{document}
 
@@ -51,6 +66,97 @@
 \end{center}
 
 \section*{Description of the program}
+\subsubsection*{Block diagram of the program (pseudocode)}
+The main function constists of a main loop that call the sudoku solving function, if needed:
+\begin{center}
+\begin{algorithmic}
+\Function{main}{} \\
+init() \\
+\noindent enable global interrupts
+\noindent \While{true} 
+    \If{ solve\_barrier is true }
+		\If{ solved }
+        \State solve\_barrier $\gets$ false
+\EndIf
+\EndIf
+\EndWhile
+\EndFunction 
+\end{algorithmic}
+\end{center}
+
+\noindent The interrupt handler to receive data from the serial port:
+\begin{center}
+\begin{algorithmic}
+\Function{USART-ISR}{}
+\Switch{ received\_character }
+	\Case{A or T or B or S or B or O or K} \\
+		\hskip4.0em set the appropriate flag
+	\EndCase 
+	\Case{C} \\
+		\hskip4.0em set the appropriate flag \\
+		\hskip4.0em clear(); /* To clear the grid */ 
+	\EndCase 
+	\Case{N or D} \\
+		\hskip4.0em set the appropriate flag \\
+		\hskip4.0em prepare the arguments counter
+	\EndCase 
+	\Case{$<$CR$>$} \\
+		\hskip4.0em do nothing
+	\EndCase 
+	\Case{$<$LF$>$}
+		\If{command is AT or C or N}
+			send OK
+		\ElsIf{command is P}
+			set the solving barrier flag
+			send OK
+		\ElsIf{command is S}
+			set the transmit barrier flag
+			send the first cell
+		\ElsIf{command is T}
+			\If{transmit\_barrier is true}
+				send the next cell
+			\EndIf
+		\ElsIf{command is B}
+			unset the solving barrier flag
+			send OK
+		\ElsIf{command is D}
+			send the specific cell
+		\EndIf
+	\EndCase 
+	\Case{ number between 1 and 9 }
+		\If{command is N}
+			store X, Y or VALUE (based on the arguments counter)
+		\ElsIf{command is D}
+			store X or Y (based on the arguments counter)
+		\EndIf
+	\EndCase 
+\EndSwitch
+\EndFunction
+\end{algorithmic}
+\end{center}		
+
+\noindent The interrupt handler to update the LEDs:
+\begin{center}
+\begin{algorithmic}
+\Function{TIMER1-COMPARE\_MATCH-ISR}{} \\
+	\hskip4.0em update PORTA
+\EndFunction
+\end{algorithmic}
+\end{center}	
+
+\noindent The init function:
+\begin{center}
+\begin{algorithmic}
+\Function{init}{} \\
+	\hskip4.0em set all the counters to their initial values \\
+	\hskip4.0em unset all the flags \\
+	\hskip4.0em initialize PORTA \\
+	\hskip4.0em initialize TIMER1 \\
+	\hskip4.0em initialize the sudoku board \\
+	\hskip4.0em initialize the serial port
+\EndFunction
+\end{algorithmic}
+\end{center}	 
 
 \subsubsection*{The sudoku solving algorithm}
 *TO BE COMPLETED BY ANDREAS
