@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  5 DEC 2021 18:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  5 DEC 2021 18:05
 entering extended mode
 **./ACE411_MILESTONE_REPORT_Team5.tex
 (ACE411_MILESTONE_REPORT_Team5.tex
@@ -558,34 +558,28 @@ Package pdftex.def Info: ./images//RESOURCES.png  used on input line 89.
  [3 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [4] [5] 
 AED: lastpage setting LastPage
 [6] (ACE411_MILESTONE_REPORT_Team5.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `ACE411_MILESTONE_REPORT_Team5.out' has not c
 hanged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 12645 strings out of 479321
- 222916 string characters out of 2856583
+ 12644 strings out of 479321
+ 222910 string characters out of 2856583
  548895 words of memory out of 3000000
  29894 multiletter control sequences out of 15000+600000
  409505 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,12n,75p,729b,897s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{page.7} has been referenced but does not exist, r
-eplaced by a fixed one
-
- <C:\Users\lioud\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm12
-00.pk><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmmi12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/lioud/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on ACE411_MILESTONE_REPORT_Team5.pdf (6 pages, 159486 bytes).
+ 71i,12n,75p,668b,897s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\lioud\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
+1200.pk><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmmi12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/lioud/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on ACE411_MILESTONE_REPORT_Team5.pdf (6 pages, 159196 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
+ 93 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
