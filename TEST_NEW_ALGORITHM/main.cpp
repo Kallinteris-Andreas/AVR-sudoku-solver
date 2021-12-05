@@ -387,10 +387,9 @@ int main(void){
 	
 	while (true) {
 		if(base_board.get_solving_barrier()){
-			if(base_board.solve()){
-				base_board.set_solving_barrier(false);
-				send_done();
-			}
+			base_board.solve();
+			base_board.set_solving_barrier(false);
+			send_done();
 		}
 	}
 }
