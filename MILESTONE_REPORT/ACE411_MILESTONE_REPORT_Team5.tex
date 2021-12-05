@@ -162,7 +162,11 @@ init() \\
 \end{center}	 
 
 \subsubsection*{The sudoku solving algorithm}
-\textcolor{red}{*TO BE COMPLETED BY ANDREAS}
+The sudoku solver baseline for the fist 8 rows is a general purpose DFS algorithm (with pruning invalid cases), where profiling indicated that the biggest time cost is the routine for pruning (finding which are the valid values for a cell).
+And in order to minimize that cost, the calculations for pruning a cell are computed once and cached.
+
+Lastly after the first 8 rows are solved the last row is trivially solved.
+
 
 \subsubsection*{Controlling the LED progress bar}
 To update the LEDs that show the progress of solving, there were two options. The first one was updating the PORTA register every time we change the value of a cell and the second one was refreshing the LEDs with a 30Hz frequency. The former option would consume many clock cycles (because on every PORTA update, its new value is read from flash, which needs 3 clock cycles many times each second), when the latter would consume those 3 cycles only 30 times per second, which is pleasant for the human eye. So, the latter was used by enabling Timer/Counter1 and using its Output Compare Match Interrupt. The interrupt is fired with a 30Hz frequency and it simply updates the value of PORTA.
