@@ -83,7 +83,7 @@ class sudoku{
 			to_return.fill(true);
 			
 			//invalidate values based on it's vertical column
-			for (auto i = 0; i!=lenght; i++)
+			for (auto i = 0; i!=lenght-1; i++)
 				if(board[i][x_cord] != empty_cell)
 					to_return.set(board[i][x_cord]-1, false);
 
