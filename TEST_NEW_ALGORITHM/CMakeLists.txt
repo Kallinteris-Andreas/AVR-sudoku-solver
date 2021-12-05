@@ -11,8 +11,8 @@ set(
 )
 
 
-add_subdirectory( avr-libcpp )
+#add_subdirectory( avr-libcpp )
 #target_link_libraries( avr-libcpp )
-link_libraries( avr-libcpp )
+#link_libraries( avr-libcpp )
 
 add_executable(main main.cpp)
