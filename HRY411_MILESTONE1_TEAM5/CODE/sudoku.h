@@ -1,7 +1,7 @@
 ﻿/*
 ; sudoku.h
 ;
-; Course: HRY411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22
+; Course: ACE411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22
 ;
 ; Semester project - Sudoku on Atmel AVR
 ; Students             : Kallinteris Andreas, 2017030066

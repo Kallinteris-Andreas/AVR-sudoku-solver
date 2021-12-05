@@ -75,7 +75,7 @@ It is important to note that in the case of ''play'' command, the interrupt serv
 \subsubsection*{Transmitting to the serial port}
 To transmit a character, a polling procedure is used. A loop is done to wait until the UDR register to get empty and then we write the characted to be transmitted. Practically, in this project polling is not actually done. The baud rate is extremely low, so the UDR register will be already empty, every time we want to transmit a character (every 10000 clock cycles approximately).
 
-\section*{Microchip configuration - Compilation process}
+\section*{Microchip Studio configuration - Compilation process}
 Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio), some modifications should be done to the default settings of a new C++ project.  \\
 Firstly, add the symbol “AVR” to the compiler’s symbols:\\
 \includegraphics[scale=0.75]{CPP_AVR_SYMBOL.png} \\

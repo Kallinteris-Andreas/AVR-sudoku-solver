@@ -1,6 +1,6 @@
 # Semester project - Sudoku on Atmel AVR
 #### Course
-HRY411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22 
+ACE411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22 
 #### Students            
 Kallinteris Andreas (2017030066), Lioudakis Emmanouil (2018030020)
 #### Device in simulation 
