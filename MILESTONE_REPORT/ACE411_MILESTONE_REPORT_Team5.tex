@@ -197,7 +197,7 @@ The rest bytes (6352-82-162 = 6108) are reserved by the code instructions.
 
 \subsubsection*{Static RAM (SRAM)}
 The global variables used to control the serial port are the struct of flags for the received character(11 bits or 2 bytes -- 0x0062-0x0063), the union for the X counters (1 byte - 0x0061), the union for the Y counters (1 byte - 0x0060) and the counter for the arguments (1 byte - 0x00b7). The rest of the 88 bytes are used for the base\_board object (an instance of the sudoku class). Inside this object is stored the 9x9 sudoku grid as a two dimensioned array of unsigned integers. \\
-During the solving process, almost the whole remaining memory (1024-88 = 936 bytes) is used to save temporary results. (ANDREAS SHOULD EVALUATE THIS)
+During the solving process, the solver use up to 790 bytes leaving 146 bytes for context switching during interupts.
 
 
 
