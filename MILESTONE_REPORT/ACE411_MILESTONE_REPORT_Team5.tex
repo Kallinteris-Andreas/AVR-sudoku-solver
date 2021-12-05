@@ -65,6 +65,9 @@
 	\rule{\textwidth}{1pt}
 \end{center}
 
+\section*{Introduction}
+
+
 \section*{Description of the program}
 \subsubsection*{Block diagram of the program (pseudocode)}
 The main function constists of a main loop that call the sudoku solving function, if needed:
@@ -159,7 +162,7 @@ init() \\
 \end{center}	 
 
 \subsubsection*{The sudoku solving algorithm}
-*TO BE COMPLETED BY ANDREAS
+\textcolor{red}{*TO BE COMPLETED BY ANDREAS}
 
 \subsubsection*{Controlling the LED progress bar}
 To update the LEDs that show the progress of solving, there were two options. The first one was updating the PORTA register every time we change the value of a cell and the second one was refreshing the LEDs with a 30Hz frequency. The former option would consume many clock cycles (because on every PORTA update, its new value is read from flash, which needs 3 clock cycles many times each second), when the latter would consume those 3 cycles only 30 times per second, which is pleasant for the human eye. So, the latter was used by enabling Timer/Counter1 and using its Output Compare Match Interrupt. The interrupt is fired with a 30Hz frequency and it simply updates the value of PORTA.
@@ -197,7 +200,7 @@ The rest bytes (6352-82-162 = 6108) are reserved by the code instructions.
 
 \subsubsection*{Static RAM (SRAM)}
 The global variables used to control the serial port are the struct of flags for the received character(11 bits or 2 bytes -- 0x0062-0x0063), the union for the X counters (1 byte - 0x0061), the union for the Y counters (1 byte - 0x0060) and the counter for the arguments (1 byte - 0x00b7). The rest of the 88 bytes are used for the base\_board object (an instance of the sudoku class). Inside this object is stored the 9x9 sudoku grid as a two dimensioned array of unsigned integers. \\
-During the solving process, almost the whole remaining memory (1024-88 = 936 bytes) is used to save temporary results. (ANDREAS SHOULD EVALUATE THIS)
+During the solving process, the solver uses up to 790 bytes, leaving 146 bytes for context switching during interrupts.
 
 
 
@@ -233,6 +236,7 @@ Although the program has still some bugs (reported to Odysseas) and part of the 
  Ultra     &  \SI{432.3558}{\milli\second}   &    \SI{2.1232918}{\second}   & \SI{53.7178259}{\second}  & \SI{200.7779}{\milli\second}   & \SI{7.2966281}{\second}    \\  \hline
 \end{tabular}
 \end{center}
+In the final report (which will be submitted on the 22\textsuperscript{th} of December, 100 boards of each difficulty level will be solved, to provide an accurate statistic performance analysis of the program. This procedure is postponed for now, because of the interface's bugs.
 
 
 \section*{STK500 configuration}
@@ -245,5 +249,6 @@ The STK500 development board we have received has installed the ATmega16L microc
 \item[OSCSEL] mounted to pins 2 and 3 to use the on-board crystal signal as clock signal.
 \end{description}
 
+\section*{Conclusion - Future work}
 
 \end{document}
