@@ -13,10 +13,10 @@ Microchip Studio 7
 10 MHz, using an oscillator on STK500 (If changed, things such as timer init. value and UBRR for the serial port should change too)
 
 #### Description of the submitted files
-The folder "CODE" contains the code developed for the project
-team5milestone.elf is the file download to the STK (produced by compiling the code)
-The folder "STIMULI_FILES" contains the stimuli files used to test the functionality of the program
-The folder "PUTTY_LOGS" contains the PuTTY logs of three tests on real hardware (more info in the report)
+The folder "CODE" contains the code developed for the project. 
+"team5milestone.elf" is the file download to the STK (produced by compiling the code).
+The folder "STIMULI_FILES" contains the stimuli files used to test the functionality of the program.
+The folder "PUTTY_LOGS" contains the PuTTY logs of three tests on real hardware (more info in the report).
 
 # build instructions
 
