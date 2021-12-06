@@ -73,11 +73,11 @@ When a character is sent to the serial port, the USART\_RXC interrupt is trigger
 It is important to note that in the case of ''play'' command, the interrupt service routine does not call the solving function, but simply sets the solving flag and returns. This is done to return back as fast as possible, and then start solving with the interrupts enabled (when the ISR is called, the interrupts are disabled until it returns). In that way, while solving a break or a debug command can be received and executed (by interrupting the solving function). If the ISR called the solve function, until completing solving, the interrupts would be disabled, and any new characters from the serial port would not be read.
 
 \subsubsection*{Transmitting to the serial port}
-To transmit a character, a polling procedure is used. A loop is done to wait until the UDR register to get empty and then we write the characted to be transmitted. In fact, in this project, polling is not affecting the system's efficiency, because the baud rate is extremely low, so the UDR register will be empty, every time we want to transmit a character (every 10000 clock cycles approximately). So, for example the ``OK'' sending is done inside the USART interrupt handler in the case of an ``AT'' command. This is not a problem, because the communication protocol described in the assignment states that the computer will wait for the reply before sending a new command.
+To transmit a character, a polling procedure is used. A loop is done to wait until the UDR register gets empty and then is written the characted to be transmitted. In fact, in this project, polling is not affecting the system's efficiency, because the baud rate is extremely low, so the UDR register will be empty, every time we want to transmit a character (every 10000 clock cycles approximately). So, for example the ``OK'' sending is done inside the USART interrupt handler in the case of an ``AT'' command. This is not a problem, because the communication protocol described in the assignment states that the computer will wait for the reply before sending a new command.
 
 \section*{Microchip Studio configuration - Compilation process}
-Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio), some modifications should be done to the default settings of a new C++ project.  \\
-Firstly, add the symbol “AVR” to the compiler’s symbols:\\
+Since the code is written using the C++ language (using newer standards than the supported from Microchip Studio by default), some modifications should be done to the default settings of a new C++ project.  \\
+Firstly, add the symbol “AVR” to the compiler’s defined symbols:\\
 \includegraphics[scale=0.75]{CPP_AVR_SYMBOL.png} \\
 Secondly, add the flag “-std=c++17” to the compiler’s flags:\\
 \includegraphics[scale=0.75]{CPP_STD_17.png}  \\
@@ -122,7 +122,7 @@ Three tests have been done on hardware using PuTTY. The content of the PuTTY ter
 \item two\_sudokus\_tty.log, which feeds the program with two sudoku boards, one after another. After solving the first and sending back the results, a “clear” command is executed and then the grid is filled with the second sudoku, it is solved and the results are sent back to the serial port.
 \end{itemize}
 On each file, an identifier is placed in the start of each line, to show who sent this command ([PC] or [STK]).\\
-Important note: While configuring the serial connection in PuTTY the flow control can be set either to ``None'', or to ``XON/XOFF'' without any problem. Even when using XON/XOFF, the baud rate is so low, so the buffers of the two communicating devices (the PC and the STK) will never overflow.
+Important note: While configuring the serial connection in PuTTY, the flow control can be set either to ``None'', or to ``XON/XOFF'' without any problem. Even when using XON/XOFF, the baud rate is so low, so the buffers of the two communicating devices (the PC and the STK) will never overflow.
 
 \subsubsection*{Using the interface program developed by Odysseas Stavrou}
 Although the program has still some bugs (reported to Odysseas) and part of the functionality cannot be tested with it (such as the break command), it can show useful statistics for the sudoku solver. It was used to find the solving time of many sudokus. Five random sudokus of each difficulty level were solved, giving the following results:
@@ -136,7 +136,7 @@ Although the program has still some bugs (reported to Odysseas) and part of the 
  Ultra     &  \SI{23.6088}{\second}   &    \SI{3.2823}{\second}   & \SI{72.0722}{\second}  & \SI{408.7206}{\milli\second}   & \SI{7.1807}{\second}    \\  \hline
 \end{tabular}
 \end{center}
-In the final report (which will be submitted on the 22\textsuperscript{th} of December, 100 boards of each difficulty level will be solved, to provide an accurate statistic performance analysis of the program. This procedure is postponed for now, because of the interface's bugs.
+In the final report (which will be submitted on the 22\textsuperscript{th} of December), 100 boards of each difficulty level will be solved, to provide an accurate statistic performance analysis of the program. This procedure is postponed for now, because of the interface's bugs.
 
 
 \section*{STK500 configuration}
