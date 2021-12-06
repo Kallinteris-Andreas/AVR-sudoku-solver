@@ -155,8 +155,9 @@ class sudoku{
 		}
 	public:
 		void set_cell(const int8_t y_cord, const int8_t x_cord, const int8_t value){
+			if (board[y_cord-1][x_cord-1] == empty_cell)
+				solved_cell_counter++;
 			board[y_cord-1][x_cord-1] = value;
-			solved_cell_counter++;
 		}
 		uint8_t get_cell(const int8_t y_cord, const int8_t x_cord){
 			return board[y_cord-1][x_cord-1];
