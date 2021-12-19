@@ -1,5 +1,5 @@
 # HRY411_Performance_Analysis
-Performance analysis program (and data) for the AVR sudoku solver
+Performance analysis program for the AVR sudoku solver
 
 
 Using a batch file, the interface program is called 100 times for each difficulty level, redirecting its output to the appropriate log file.
