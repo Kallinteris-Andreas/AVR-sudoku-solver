@@ -144,10 +144,9 @@ The STK500 development board we have received has installed the ATmega16L microc
 \item[XTAL1] mounted, to use the external crystal.
 \item[OSCSEL] mounted to pins 2 and 3 to use the on-board crystal signal as clock signal.
 \end{description}
-
 The fuses configuration of the microcontroller is described in the file ``fuses\_config.conf''.
 
 \section*{Conclusion}
-No changes have been done to the code from milestone 1. **** ADD SOMETHING ****
+The present project is a great example of designing an embedded system with real-time requirements. A simple sudoku solving algorithm designed for general purpose microprocessors (which have clock frequency of GHz), would not be efficient on a microcontroller (which has a clock frequency of several MHz). So it had to be optimized, and some values have been precalculated, to achieve a fast solving time. Additionally, two real-time requirements had to be implemented, the communication via the RS232 port and the LED interfacing, using the microcontroller's interrupts and internal modules (timers).
 
 \end{document}

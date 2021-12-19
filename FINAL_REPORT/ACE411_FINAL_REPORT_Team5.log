@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  19 DEC 2021 11:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  19 DEC 2021 18:46
 entering extended mode
 **./ACE411_FINAL_REPORT_Team5.tex
 (ACE411_FINAL_REPORT_Team5.tex
@@ -555,13 +555,7 @@ File: ./images//RESOURCES.png Graphic file (type png)
 <use ./images//RESOURCES.png>
 Package pdftex.def Info: ./images//RESOURCES.png  used on input line 90.
 (pdftex.def)             Requested size: 469.75502pt x 117.56561pt.
- [3 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [4]
-Overfull \hbox (7.33043pt too wide) in paragraph at lines 148--149
-[]\OT1/cmr/m/n/12 The fuses con-fig-u-ra-tion of the de-vel-op-ment board is de
--scribed in the file ``fuses[]config.conf''. 
- []
-
-[5] 
+ [3 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [4] [5] 
 AED: lastpage setting LastPage
 [6] (ACE411_FINAL_REPORT_Team5.aux)
 Package rerunfilecheck Info: File `ACE411_FINAL_REPORT_Team5.out' has not chang
@@ -582,7 +576,7 @@ ts/cm/cmbx12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on ACE411_FINAL_REPORT_Team5.pdf (6 pages, 146370 bytes).
+Output written on ACE411_FINAL_REPORT_Team5.pdf (6 pages, 146604 bytes).
 PDF statistics:
  87 PDF objects out of 1000 (max. 8388607)
  24 named destinations out of 1000 (max. 500000)
