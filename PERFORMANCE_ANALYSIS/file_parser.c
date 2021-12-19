@@ -26,7 +26,7 @@ void parse_log_file(FILE* logfile){
 	/* Time units, used to compare */
 	char micro[] = "µs";
 	char milli[] = "ms";
-	char sec[]   = "s";
+	/*char sec[]   = "s";*/
 	
 	/* Only the lines containing "Solved in: " matter for us */
 	while(fgets(line_buffer, MAX_LINE_LENGTH, logfile) != NULL){
@@ -43,7 +43,7 @@ void parse_log_file(FILE* logfile){
 				char * time_unit;
 				
 				double measure = strtod(line_without_prefix, &time_unit);
-				
+
 				/* Convert all the measurements to milliseconds (to calculate the mean value later) */
 				if(strstr(time_unit, micro)){
 					results[results_counter] = measure/(1000.0);
@@ -51,7 +51,7 @@ void parse_log_file(FILE* logfile){
 				else if(strstr(time_unit, milli)){
 					results[results_counter] = measure;
 				}
-				else if(strcmp(time_unit, sec) == 0){
+				else{ /* if(strcmp(time_unit, sec) == 0){ */
 					results[results_counter] = measure*(1000.0);
 				}
 				results_counter++;
@@ -74,7 +74,7 @@ void parse_log_file(FILE* logfile){
 		mean += results[i];
 	}
 	mean = mean/results_counter;
-	printf("The mean execution time is %lf ms.\n", mean);
+	printf("The mean execution time is %lf msec.\n", mean);
 	
 	/* Calculate the standard deviation sigma(X), where (sigma(X))^2 = 1/Ν * sum_{i=1}^{N} (xi - mean)^2 */
 	double xi_minus_mean = 0.0;
@@ -83,7 +83,7 @@ void parse_log_file(FILE* logfile){
 	}
 	xi_minus_mean = xi_minus_mean/results_counter;
 	double sd = sqrt(xi_minus_mean);
-	printf("The standard deviation of the sample is %lf.\n", sd);
+	printf("The standard deviation of the sample is %lf msec.\n", sd);
 
 }
 

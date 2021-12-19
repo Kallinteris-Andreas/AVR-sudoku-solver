@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  12 DEC 2021 08:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.10)  19 DEC 2021 11:48
 entering extended mode
 **./ACE411_FINAL_REPORT_Team5.tex
 (ACE411_FINAL_REPORT_Team5.tex
@@ -553,9 +553,15 @@ Package pdftex.def Info: ./images//CPP_STD_17.png  used on input line 83.
 <./images//RESOURCES.png, id=30, 694.84593pt x 173.89969pt>
 File: ./images//RESOURCES.png Graphic file (type png)
 <use ./images//RESOURCES.png>
-Package pdftex.def Info: ./images//RESOURCES.png  used on input line 91.
+Package pdftex.def Info: ./images//RESOURCES.png  used on input line 90.
 (pdftex.def)             Requested size: 469.75502pt x 117.56561pt.
- [3 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [4] [5] 
+ [3 <./images//CPP_STD_17.png> <./images//RESOURCES.png>] [4]
+Overfull \hbox (7.33043pt too wide) in paragraph at lines 148--149
+[]\OT1/cmr/m/n/12 The fuses con-fig-u-ra-tion of the de-vel-op-ment board is de
+-scribed in the file ``fuses[]config.conf''. 
+ []
+
+[5] 
 AED: lastpage setting LastPage
 [6] (ACE411_FINAL_REPORT_Team5.aux)
 Package rerunfilecheck Info: File `ACE411_FINAL_REPORT_Team5.out' has not chang
@@ -563,23 +569,22 @@ ed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 12646 strings out of 479321
- 222844 string characters out of 2856583
- 547875 words of memory out of 3000000
- 29894 multiletter control sequences out of 15000+600000
- 409505 words of font info for 48 fonts, out of 8000000 for 9000
+ 12637 strings out of 479321
+ 222748 string characters out of 2856583
+ 544875 words of memory out of 3000000
+ 29889 multiletter control sequences out of 15000+600000
+ 408828 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,12n,75p,711b,897s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,11n,75p,711b,808s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\lioud\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/lioud/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on ACE411_FINAL_REPORT_Team5.pdf (6 pages, 155053 bytes).
+ic/amsfonts/cm/cmr12.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/lioud/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on ACE411_FINAL_REPORT_Team5.pdf (6 pages, 146370 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
+ 87 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
