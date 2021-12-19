@@ -7,14 +7,13 @@
  * (example call) file_parser.exe easy_out.log
  *
  */
- #include <stdlib.h>
- #include <stdio.h>
- #include <string.h>
- #include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
  
- #define MAX_LINE_LENGTH 1024
- 
- #define MAX_NUM_OF_TESTS 100
+#define MAX_LINE_LENGTH 1024
+#define MAX_NUM_OF_TESTS 100
  
 void parse_log_file(FILE* logfile){
 	
