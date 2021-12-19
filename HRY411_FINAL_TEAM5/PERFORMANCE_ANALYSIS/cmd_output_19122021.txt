@@ -1,0 +1,43 @@
+Microsoft Windows [Version 10.0.19043.1415]
+(c) Microsoft Corporation. Με επιφύλαξη κάθε νόμιμου δικαιώματος.
+
+C:\Users\lioud\Desktop\Odysseas_Interface>ace411_sudoku_win_v1_5.exe list
+08:38:26 [INFO] Found Port (0): COM3
+
+C:\Users\lioud\Desktop\Odysseas_Interface>perf_analysis
+Could Not Find C:\Users\lioud\Desktop\Odysseas_Interface\medium_out.log
+Could Not Find C:\Users\lioud\Desktop\Odysseas_Interface\hard_out.log
+Could Not Find C:\Users\lioud\Desktop\Odysseas_Interface\ultra_out.log
+
+C:\Users\lioud\Desktop\Odysseas_Interface>ECHO EASY LEVEL STATISTICS
+EASY LEVEL STATISTICS
+
+C:\Users\lioud\Desktop\Odysseas_Interface>file_parser.exe easy_out.log
+The mean execution time is 0.461918 msec.
+The standard deviation of the sample is 1.063388 msec.
+
+C:\Users\lioud\Desktop\Odysseas_Interface>ECHO MEDIUM LEVEL STATISTICS
+MEDIUM LEVEL STATISTICS
+
+C:\Users\lioud\Desktop\Odysseas_Interface>file_parser.exe medium_out.log
+The mean execution time is 4.439484 msec.
+The standard deviation of the sample is 14.304317 msec.
+
+C:\Users\lioud\Desktop\Odysseas_Interface>ECHO HARD LEVEL STATISTICS
+HARD LEVEL STATISTICS
+
+C:\Users\lioud\Desktop\Odysseas_Interface>file_parser.exe hard_out.log
+The mean execution time is 18.620610 msec.
+The standard deviation of the sample is 36.208134 msec.
+
+C:\Users\lioud\Desktop\Odysseas_Interface>ECHO ULTRA LEVEL STATISTICS
+ULTRA LEVEL STATISTICS
+
+C:\Users\lioud\Desktop\Odysseas_Interface>file_parser.exe ultra_out.log
+The mean execution time is 15006.633687 msec.
+The standard deviation of the sample is 37863.171875 msec.
+
+C:\Users\lioud\Desktop\Odysseas_Interface>PAUSE
+Press any key to continue . . .
+
+C:\Users\lioud\Desktop\Odysseas_Interface>
