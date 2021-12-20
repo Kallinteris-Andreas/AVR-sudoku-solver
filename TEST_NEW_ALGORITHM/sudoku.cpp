@@ -1,4 +1,5 @@
 /**\file sudoku.cpp
+ * \version 1.2
  * \brief Contains is a class SUDOKO class which includes a very fast solver
  * \target x86-64 and AVR8
  * \author Kallinteris Andreas
@@ -15,7 +16,7 @@
 #include <cstdint>
 #endif
 
-static const int8_t empty_cell = 0x00;
+static const uint8_t empty_cell = 0x00;
 static const auto lenght = 9; //indicate the dimensions
 
 class sudoku{
@@ -34,7 +35,7 @@ class sudoku{
 		 */
 		[[gnu::pure, nodiscard]]
 		[[gnu::optimize(3)]]
-		kallinteris::bool_array<lenght> possible_values(const int8_t y_cord, const int8_t x_cord){
+		kallinteris::bool_array<lenght> possible_values(const uint8_t y_cord, const uint8_t x_cord){
 			if (x_cord < 0 or x_cord > lenght)
 				__builtin_unreachable();
 			if (y_cord < 0 or y_cord > lenght-1)
@@ -73,7 +74,7 @@ class sudoku{
 		 */
 		[[gnu::pure, nodiscard]]
 		[[gnu::optimize(1)]]
-		uint8_t last_row_possible_value(const int8_t x_cord){
+		uint8_t last_row_possible_value(const uint8_t x_cord){
 			if (x_cord < 0 or x_cord > lenght)
 				__builtin_unreachable();
 
@@ -103,7 +104,7 @@ class sudoku{
 		 * \author Kallinteris Andreas
 		 */
 		[[gnu::optimize(2)]]
-		bool solve_first_8_rows(const int8_t start_index = 0){
+		bool solve_first_8_rows(const uint8_t start_index = 0){
 			if(solving_barrier == false) // Added by elioudakis on 1 Dec. to support B command
 				return false;
 			
@@ -154,12 +155,12 @@ class sudoku{
 			assert(solved_cell_counter == lenght*lenght);
 		}
 	public:
-		void set_cell(const int8_t y_cord, const int8_t x_cord, const int8_t value){
+		void set_cell(const uint8_t y_cord, const uint8_t x_cord, const uint8_t value){
 			if (board[y_cord-1][x_cord-1] == empty_cell)
 				solved_cell_counter++;
 			board[y_cord-1][x_cord-1] = value;
 		}
-		uint8_t get_cell(const int8_t y_cord, const int8_t x_cord){
+		uint8_t get_cell(const uint8_t y_cord, const uint8_t x_cord){
 			return board[y_cord-1][x_cord-1];
 		}
 		uint8_t get_solved_cell_counter(){
