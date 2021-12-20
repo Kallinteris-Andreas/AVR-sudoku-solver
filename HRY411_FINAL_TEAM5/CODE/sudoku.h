@@ -1,7 +1,7 @@
 ﻿/*
 ; sudoku.h
 ;
-; Course: ACE411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22
+; Course: HRY411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22
 ;
 ; Semester project - Sudoku on Atmel AVR
 ; Students             : Kallinteris Andreas, 2017030066
@@ -23,7 +23,6 @@
 #define MYUBRR ((F_CPU/16/BAUD)-1) /* Calculate UBRR's value */
 
 //#define SIMULATION_MODE  /* If defined, simulation mode is enabled. USART input is taken from TCNT2 and USART output is redirected to TCNT0 */
-                           /* Uncomment it to define */
 
 /************************************************************************/
 /* Global variables declaration                                         */
@@ -31,16 +30,17 @@
 
 /* Struct to keep the program flags */
 struct flags_struct {
-	bool received_A : 1; /* Shows if we have received A */
-	bool received_B : 1; /* Shows if we have received B */
-	bool received_C : 1; /* Shows if we have received C */
-	bool received_D : 1; /* Shows if we have received D */
-	bool received_K : 1; /* Shows if we have received K */
-	bool received_N : 1; /* Shows if we have received N */
-	bool received_O : 1; /* Shows if we have received O */
-	bool received_P : 1; /* Shows if we have received P */
-	bool received_S : 1; /* Shows if we have received S */
-	bool received_T : 1; /* Shows if we have received T */
+	bool received_A  : 1; /* Shows if we have received A */
+	bool received_B  : 1; /* Shows if we have received B */
+	bool received_C  : 1; /* Shows if we have received C */
+	bool received_D  : 1; /* Shows if we have received D */
+	bool received_K  : 1; /* Shows if we have received K */
+	bool received_N  : 1; /* Shows if we have received N */
+	bool received_O  : 1; /* Shows if we have received O */
+	bool received_P  : 1; /* Shows if we have received P */
+	bool received_S  : 1; /* Shows if we have received S */
+	bool received_T  : 1; /* Shows if we have received T */
+	bool received_CR : 1; /* Shows if we have received <CR> (added after milestone 1) */
 	bool transmit_barrier : 1;  /* TRUE : Transmitting data is permitted
 	                               FALSE: Break transmitting data */
 };

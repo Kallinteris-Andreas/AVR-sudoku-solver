@@ -95,10 +95,10 @@ Except from the code, two arrays (look up tables) are stored in flash:
 \item The led\_bar\_LUT (defined in sudoku.h), which contains the decoding data for the LED progress bar (holds 82 bytes).
 \item The div\_9\_LUT (defined in LUT.hpp), which contains pre-calculated value to make the solving proccess faster (holds 162 bytes).
 \end{itemize}
-The rest bytes (6822-82-162 = 6578) are reserved by the code instructions.
+The rest bytes (6888-82-162 = 6644) are reserved by the code instructions.
 
 \subsubsection*{Static RAM (SRAM)}
-The global variables used to control the serial port are the struct of flags for the received character(11 bits or 2 bytes), the union for the X counters (1 byte), the union for the Y counters (1 byte) and the counter for the arguments (1 byte). The rest of the 88 bytes are used for the base\_board object (an instance of the sudoku class). Inside this object is stored the 9x9 sudoku grid as a two dimensioned array of unsigned integers. \\
+The global variables used to control the serial port are the struct of flags for the received character(12 bits or 2 bytes), the union for the X counters (1 byte), the union for the Y counters (1 byte) and the counter for the arguments (1 byte). The rest of the 88 bytes are used for the base\_board object (an instance of the sudoku class). Inside this object is stored the 9x9 sudoku grid as a two dimensioned array of unsigned integers. \\
 During the solving process, the solver uses up to 790 bytes, leaving 146 bytes for context switching during interrupts.
 
 \section*{Simulation in Microchip Studio, using stimuli files}

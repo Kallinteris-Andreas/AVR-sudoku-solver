@@ -198,6 +198,8 @@ void clear(void){
 
 /************************************************************************/
 /* The interrupt service routine for the UART receive event             */
+/* Small additions have been done from milestone, to overcome some of   */
+/*  the typos that easily can happen when using PuTTY                   */
 /************************************************************************/
 ISR (USART_RXC_vect){
 	unsigned char received_char = UDR;
@@ -242,22 +244,23 @@ ISR (USART_RXC_vect){
 			flg.received_K = true;
 			break;
 		case 0x0D:
-			break; /* When receiving "<CR>" (for whichever command), nothing has to be done. */
+			flg.received_CR = true;
+			break; 
 		case 0x0A:
 			/* When receiving "<LF>", process and return
 			   <LF> is the last character of each command, so it 
 				   is time to execute the received command */
 		
-			if( (flg.received_A && flg.received_T) || (flg.received_C) || (flg.received_N) ){
+			if( ((flg.received_A && flg.received_T) || (flg.received_C) || (flg.received_N)) && flg.received_CR ){
 				/* If command was AT or C or N, simply send OK */
 				send_ok();
 			}
-			else if(flg.received_P){
+			else if(flg.received_P && flg.received_CR){
 				/* If command was P,start solving the sudoku after sending OK */
 				base_board.set_solving_barrier(true); /* When returning to main, the solving will start */
 				send_ok();
 			}
-			else if(flg.received_S){
+			else if(flg.received_S && flg.received_CR){
 				/* If command was S, start sending values */
 				flg.transmit_barrier = true; /* Set the transmit barrier, to be able to send the next cells */
 				/* Send the first cell */
@@ -265,7 +268,7 @@ ISR (USART_RXC_vect){
 				cnt_Y.sent_counter_Y = 1;
 				send_cell(cnt_X.sent_counter_X, cnt_Y.sent_counter_Y);
 			}
-			else if(flg.received_T){
+			else if(flg.received_T && flg.received_CR){
 				/* If command was T, send next value */
 				if(flg.transmit_barrier){ /* If transmit barrier is false, this means "break transmission" */
 					cnt_X.sent_counter_X++;
@@ -279,48 +282,64 @@ ISR (USART_RXC_vect){
 					}
 				}
 			}
-			else if(flg.received_B){
-				/* If command was B, stop solving or transmitting results and send OK */
+			else if(flg.received_B && flg.received_CR){
+				/* If command was B, stop solving or transmitting results and send OK */ 
 				base_board.set_solving_barrier(false);
 				flg.transmit_barrier = false;
 				send_ok();
 			}
-			else if(flg.received_D){
+			else if(flg.received_D && flg.received_CR){
 				/* If command was D, send cell contents (they are already prepared when we received Y) */
 				send_cell(cnt_X.received_X, cnt_Y.received_Y);
 			}
-			else if(flg.received_O && flg.received_K){
+			else if(flg.received_O && flg.received_K && flg.received_CR){
 				/* If command was OK, this means that the computer has received all the values */
-				/* Nothing should be done here */
+				/* We ended decoding this command, so clear the flags, to be able to receive the next one */
+				clear_char_flags();
+			}
+			else{
+				/* If an invalid command was given, clear the flags, to be able to receive a new command (hopefully correct) */
+				clear_char_flags();
+				/* For example, if we give "J<CR><LF>" or "A<CR>LF>" (example of a simple typo in PuTTY), nothing will be done and the flags will be cleared */
 			}
 			break;
 			
-		default:
-			/* Received numbers (Commands N and D from computer) */
+		default: /* Either a number or an invalid character was received */
 		
-			if(flg.received_N){ /* If command was N, the first time read X, the second time read Y, the third time read VALUE and store it */
-				if(args_counter == 0){                       /* First argument, X */
-					cnt_X.received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-					args_counter++;
+			if((received_char >= 0x30) && (received_char <= 0x39)){ /* Received numbers (Commands N and D from computer) */
+				
+				if(flg.received_N){ /* If command was N, the first time read X, the second time read Y, the third time read VALUE and store it */
+					if(args_counter == 0){                       /* First argument, X */
+						cnt_X.received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+						args_counter++;
+					}
+					else if(args_counter == 1){                  /* Second argument, Y */
+						cnt_Y.received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+						args_counter++;
+					}
+					else if(args_counter == 2){               /* Third argument, VALUE */
+						received_char = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+						base_board.set_cell(cnt_Y.received_Y, cnt_X.received_X, received_char);
+					}
 				}
-				else if(args_counter == 1){                  /* Second argument, Y */
-					cnt_Y.received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-					args_counter++;
-				}
-				else if(args_counter == 2){               /* Third argument, VALUE */
-					received_char = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-					base_board.set_cell(cnt_Y.received_Y, cnt_X.received_X, received_char);
+				else if(flg.received_D){ /* If command was D, the first time read X, the second time read Y */
+					 if(args_counter == 0){                       /* First argument, X */
+						 cnt_X.received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
+						 args_counter++;
+					 }
+					 else if(args_counter == 1){                  /* Second argument, Y */
+						 cnt_Y.received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */	 
+					 }
 				}
 			}
-			else if(flg.received_D){ /* If command was D, the first time read X, the second time read Y */
-				 if(args_counter == 0){                       /* First argument, X */
-					 cnt_X.received_X = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */
-					 args_counter++;
-				 }
-				 else if(args_counter == 1){                  /* Second argument, Y */
-					 cnt_Y.received_Y = received_char & 0x0F; /* Convert from ASCII to BCD, using the appropriate mask */	 
-				 }
-			}	
+			else{
+				/* If an invalid character was given, clear the flags, to be able to receive a new command (hopefully correct) */
+				clear_char_flags();
+				/* All the characters before the invalid one will be rejected (as invalid is defined a character which does not exist in the communication
+				    protocol given on the assignment) */
+				/* For example, if we give "JAT<CR><LF>" (example of a simple typo in PuTTY), the J will be "rejected" and the AT command will be executed normally 
+				                if we give "ATJ<CR><LF>", the J and the previous characters will be rejected, and the AT command will not be executed */
+			}
 	}
 		
 }
@@ -330,16 +349,17 @@ ISR (USART_RXC_vect){
 /* Function to set all the character receiving flags to false           */
 /************************************************************************/
 void clear_char_flags(void){
-	flg.received_A = false;
-	flg.received_B = false;
-	flg.received_C = false;
-	flg.received_D = false;
-	flg.received_K = false;
-	flg.received_N = false;
-	flg.received_O = false;
-	flg.received_P = false;
-	flg.received_S = false;
-	flg.received_T = false;	
+	flg.received_A  = false;
+	flg.received_B  = false;
+	flg.received_C  = false;
+	flg.received_D  = false;
+	flg.received_K  = false;
+	flg.received_N  = false;
+	flg.received_O  = false;
+	flg.received_P  = false;
+	flg.received_S  = false;
+	flg.received_T  = false;
+	flg.received_CR = false;	
 }
 
 /************************************************************************/

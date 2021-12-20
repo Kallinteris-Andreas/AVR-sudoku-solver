@@ -30,16 +30,17 @@
 
 /* Struct to keep the program flags */
 struct flags_struct {
-	bool received_A : 1; /* Shows if we have received A */
-	bool received_B : 1; /* Shows if we have received B */
-	bool received_C : 1; /* Shows if we have received C */
-	bool received_D : 1; /* Shows if we have received D */
-	bool received_K : 1; /* Shows if we have received K */
-	bool received_N : 1; /* Shows if we have received N */
-	bool received_O : 1; /* Shows if we have received O */
-	bool received_P : 1; /* Shows if we have received P */
-	bool received_S : 1; /* Shows if we have received S */
-	bool received_T : 1; /* Shows if we have received T */
+	bool received_A  : 1; /* Shows if we have received A */
+	bool received_B  : 1; /* Shows if we have received B */
+	bool received_C  : 1; /* Shows if we have received C */
+	bool received_D  : 1; /* Shows if we have received D */
+	bool received_K  : 1; /* Shows if we have received K */
+	bool received_N  : 1; /* Shows if we have received N */
+	bool received_O  : 1; /* Shows if we have received O */
+	bool received_P  : 1; /* Shows if we have received P */
+	bool received_S  : 1; /* Shows if we have received S */
+	bool received_T  : 1; /* Shows if we have received T */
+	bool received_CR : 1; /* Shows if we have received <CR> (added after milestone 1) */
 	bool transmit_barrier : 1;  /* TRUE : Transmitting data is permitted
 	                               FALSE: Break transmitting data */
 };
