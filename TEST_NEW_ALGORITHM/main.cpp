@@ -12,7 +12,7 @@
 ; CPU freq             : 10 MHz, using an oscillator in STK500 (If changed, things such as timer init. value and UBRR for the serial port should change too)
 */
 
-#include "sudoku.h"
+#include "main.h"
 #include "kallinteris.hpp"
 #include "LUT.hpp"
 #include "sudoku.cpp"

@@ -40,6 +40,7 @@ struct flags_struct {
 	bool received_P : 1; /* Shows if we have received P */
 	bool received_S : 1; /* Shows if we have received S */
 	bool received_T : 1; /* Shows if we have received T */
+	bool received_CR : 1; /* Shows if we have received T */
 	bool transmit_barrier : 1;  /* TRUE : Transmitting data is permitted
 	                               FALSE: Break transmitting data */
 };
