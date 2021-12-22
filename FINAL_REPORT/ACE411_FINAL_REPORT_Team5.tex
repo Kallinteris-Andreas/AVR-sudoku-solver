@@ -25,6 +25,12 @@
 
 \usepackage{hyperref}                           
 \usepackage{xcolor}                             
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+%\usepackage{algorithmic}
+\SetKwComment{Comment}{/* }{ */}
 \hypersetup{                                     
 	%colorlinks,                                    
 	%linkcolor={red!50!black},                 
@@ -62,6 +68,51 @@ And in order to minimize that cost, the calculations for pruning a cell are comp
 
 \noindent Lastly, after the first 8 rows are solved the last row is trivially solved.
 
+\begin{algorithm}[H]
+\SetKwInput{KwInput}{Input}                % Set the Input
+\DontPrintSemicolon
+	\KwInput{$lenght \gets 9$, $empty\_cell \gets 0$}
+	\KwData{board[$lenght$][$lenght$]}
+
+% Set Function Names
+	\SetKwFunction{Ffirst}{solve\_first\_8\_rows}
+	\SetKwFunction{Flast}{solve\_last\_row}
+	\SetKwFunction{Fsolve}{solve}
+
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\Ffirst{$start\_index = 0$}}{
+		\For{$i\gets0$ \KwTo $lenght \times (lenght-1)$}{
+			$y_{cord} \gets i / lenght$ \Comment*[r]{Computed using a LUT}
+			$x_{cord} \gets i \% lenght$\Comment*[r]{Computed using a LUT}
+			\If{$board[y_{cord}][x_{cord}] = empty\_cell$}{
+				\Comment*[r]{list\_of\_possible\_values is trivial function going over the row, collumn and block of the existing cell}
+				\For{$k \gets list\_of\_possible\_values(i)$}{
+					$board[y_{cord}][x_{cord}] \gets k$\;
+					\If{solve\_first\_8\_rows(i+1)}{
+						\KwRet true;
+					}
+					$board[y_{cord}][x_{cord}] \gets empty\_cell$\;
+				}
+				\KwRet false;
+			}
+		}
+		\KwRet true \Comment*[r]{reaching here means it has solved the first 8 rows}
+	}\;
+
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\Flast{}}{
+		$y_{cord} \gets lenght-1$\;
+		\For{$x_{cord} \gets0$ \KwTo $lenght-1$}{
+			$board[y_{cord}][x_{cord}] \gets last\_row\_remaing\_value(x_{cord})$\;
+		}
+	}\;
+
+	\SetKwProg{Fn}{Function}{:}{}
+	\Fn{\Fsolve{}}{
+		solve\_first\_8\_rows()\;
+		solve\_last\_row()\;
+	}
+\end{algorithm}
 
 \subsubsection*{Controlling the LED progress bar}
 To update the LEDs that show the progress of solving, there were two options. The first one was updating the PORTA register every time we change the value of a cell and the second one was refreshing the LEDs with a 30Hz frequency. The former option would consume many clock cycles (because on every PORTA update, its new value is read from flash, which needs 3 clock cycles many times each second), when the latter would consume those 3 cycles only 30 times per second. The latter was preferred, using Timer/Counter1.
