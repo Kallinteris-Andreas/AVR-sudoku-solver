@@ -146,7 +146,7 @@ Except from the code, two arrays (look up tables) are stored in flash:
 \item The led\_bar\_LUT (defined in main.h), which contains the decoding data for the LED progress bar (holds 82 bytes).
 \item The div\_9\_LUT (defined in LUT.hpp), which contains pre-calculated value to make the solving proccess faster (holds 162 bytes).
 \end{itemize}
-The rest bytes (6888-82-162 = 6644) are reserved by the code instructions.
+The rest bytes (6850-82-162 = 6606) are reserved by the code instructions.
 
 \subsubsection*{Static RAM (SRAM)}
 The global variables used to control the serial port are the struct of flags for the received character(12 bits or 2 bytes), the union for the X counters (1 byte), the union for the Y counters (1 byte) and the counter for the arguments (1 byte). The rest of the 88 bytes are used for the base\_board object (an instance of the sudoku class). Inside this object is stored the 9x9 sudoku grid as a two dimensioned array of unsigned integers. \\
@@ -182,7 +182,7 @@ Mean value (msec)           &  0.313944  &  0.786795   &  20.801143       &  134
 Standard deviation (msec) &  0.231433  & 2.633135   & 35.042911        &  27065.508755         \\ \hline
 \end{tabular}
 \end{center}
-\noindent The tests were done on 21 December 2021, using the version 1.6 of the interface. Although some boards are generated in a way to defeat backtracking (and therefore need more time to be solved), the results give an approximation of the needed time.
+\noindent The tests were performed on 21 December 2021, using the version 1.6 of the interface. Although some boards are generated in a way to defeat backtracking (and therefore need more time to be solved), the results give an approximation of the needed time.
 
 \noindent The GitHub repository \url{https://github.com/elioudakis/HRY411_Performance_Analysis} contains the batch file, the file parsing program, the boards that were solved and the log files produced. On eclass, only the batch file, the program and the command prompt's output is uploaded, to keep the file size low.
 
@@ -190,7 +190,7 @@ Standard deviation (msec) &  0.231433  & 2.633135   & 35.042911        &  27065.
 The STK500 development board we have received has installed the ATmega16L microcontroller, which is fully compatible with the ATmega16 used in Microchip Studio. PORTA is fully functional, and therefore connected to the LEDs. An external crystal of 10MHz is used. Since ISP (In System Programmer) programming mode is used, the following jumpers are mounted:
 \begin{description}
 \item[VTARGET] mounted, to use the on-boars supply voltage.
-\item[AREF] mounted, to use the AVR's AREF as reference volatge for the A/D converter on AVR. Although the A/D converter is not used in this project, the jumper is mounted, because this is the default setting.
+\item[AREF] mounted, to use the AVR's AREF as reference voltage for the A/D converter on AVR. Although the A/D converter is not used in this project, the jumper is mounted, because this is the default setting.
 \item[RESET] mounted, to be able to use the on-board reset button.
 \item[XTAL1] mounted, to use the external crystal.
 \item[OSCSEL] mounted to pins 2 and 3 to use the on-board crystal signal as clock signal.
