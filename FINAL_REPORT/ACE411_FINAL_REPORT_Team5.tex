@@ -81,7 +81,7 @@ And in order to minimize that cost, the calculations for pruning a cell are comp
 
 	\SetKwProg{Fn}{Function}{:}{}
 	\Fn{\Ffirst{$start\_index = 0$}}{
-		\For{$i\gets0$ \KwTo $lenght \times (lenght-1)$}{
+		\For{$i \gets start\_index$ \KwTo $lenght \times (lenght-1)$}{
 			$y_{cord} \gets i / lenght$ \Comment*[r]{Computed using a LUT}
 			$x_{cord} \gets i \% lenght$\Comment*[r]{Computed using a LUT}
 			\If{$board[y_{cord}][x_{cord}] = empty\_cell$}{
