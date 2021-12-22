@@ -1,42 +1,42 @@
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>ace411_sudoku_win.exe list
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>ace411_sudoku_win.exe list
 20:51:01 [INFO] Found Port (0): COM3
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>perf_analysis
-Could Not Find C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW\easy_out.log
-Could Not Find C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW\medium_out.log
-Could Not Find C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW\hard_out.log
-Could Not Find C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW\ultra_out.log
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>perf_analysis
+Could Not Find C:\Users\lioud\Desktop\Tests_21_Dec\NEW\easy_out.log
+Could Not Find C:\Users\lioud\Desktop\Tests_21_Dec\NEW\medium_out.log
+Could Not Find C:\Users\lioud\Desktop\Tests_21_Dec\NEW\hard_out.log
+Could Not Find C:\Users\lioud\Desktop\Tests_21_Dec\NEW\ultra_out.log
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>ECHO EASY LEVEL STATISTICS
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>ECHO EASY LEVEL STATISTICS
 EASY LEVEL STATISTICS
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>file_parser.exe easy_out.log
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>file_parser.exe easy_out.log
 The mean execution time is 0.313944 msec.
 The standard deviation of the sample is 0.231433 msec.
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>ECHO MEDIUM LEVEL STATISTICS
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>ECHO MEDIUM LEVEL STATISTICS
 MEDIUM LEVEL STATISTICS
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>file_parser.exe medium_out.log
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>file_parser.exe medium_out.log
 The mean execution time is 0.786795 msec.
 The standard deviation of the sample is 2.633135 msec.
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>ECHO HARD LEVEL STATISTICS
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>ECHO HARD LEVEL STATISTICS
 HARD LEVEL STATISTICS
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>file_parser.exe hard_out.log
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>file_parser.exe hard_out.log
 The mean execution time is 20.801143 msec.
 The standard deviation of the sample is 35.042911 msec.
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>ECHO ULTRA LEVEL STATISTICS
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>ECHO ULTRA LEVEL STATISTICS
 ULTRA LEVEL STATISTICS
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>file_parser.exe ultra_out.log
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>file_parser.exe ultra_out.log
 The mean execution time is 13407.680737 msec.
 The standard deviation of the sample is 27065.508755 msec.
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>PAUSE
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>PAUSE
 Press any key to continue . . .
 
-C:\Users\lioud\Desktop\Andreas_Tests_21_Dec\NEW>
+C:\Users\lioud\Desktop\Tests_21_Dec\NEW>

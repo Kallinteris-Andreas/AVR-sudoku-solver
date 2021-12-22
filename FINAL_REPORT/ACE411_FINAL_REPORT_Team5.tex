@@ -133,7 +133,7 @@ Firstly, add the symbol ``AVR'' to the compiler’s defined symbols:\\
 Secondly, add the flag ``-std=c++17'' to the compiler’s flags:\\
 \includegraphics[scale=0.75]{CPP_STD_17.png}  \\
 The optimization level should be set to ``-O2 (Optimize more)''.\\
-Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of sudoku.h). When it is defined, the program will read from TCNT2 instead of UDR and will redirect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files. \\
+Finally, the SIMULATION\_MODE should be defined (by uncommenting the line 25 of main.h). When it is defined, the program will read from TCNT2 instead of UDR and will redirect its output from UDR to TCNT0. By doing that, the program can be simulated with the provided stimuli files. \\
 The makefile should not be used with Microchip Studio, but only when using gnu-toolchain on linux system.
 
 \section*{Resource usage}
@@ -143,7 +143,7 @@ After compiling the code, the following resource usage is reported: \\
 \subsubsection*{Program memory (flash)}
 Except from the code, two arrays (look up tables) are stored in flash: 
 \begin{itemize}
-\item The led\_bar\_LUT (defined in sudoku.h), which contains the decoding data for the LED progress bar (holds 82 bytes).
+\item The led\_bar\_LUT (defined in main.h), which contains the decoding data for the LED progress bar (holds 82 bytes).
 \item The div\_9\_LUT (defined in LUT.hpp), which contains pre-calculated value to make the solving proccess faster (holds 162 bytes).
 \end{itemize}
 The rest bytes (6888-82-162 = 6644) are reserved by the code instructions.
@@ -178,13 +178,13 @@ To obtain an image of the algorithm's efficiency, the interface program was used
 \begin{tabular}{ |l|c|c|c|c| } 
  \hline
                                       & Easy         & Medium & Hard & Ultra  \\  \hline
-Mean value (msec)           &  0.461918  &  \ 4.439484   &  18.620610       &  15006.633687        \\ \hline
-Standard deviation (msec) &  1.063388  & 14.304317   & 36.208134        &  37863.171875         \\ \hline
+Mean value (msec)           &  0.313944  &  0.786795   &  20.801143       &  13407.680737        \\ \hline
+Standard deviation (msec) &  0.231433  & 2.633135   & 35.042911        &  27065.508755         \\ \hline
 \end{tabular}
 \end{center}
-\noindent The tests were done on 19 December 2021, using the version 1.5 of the interface. Although some boards are generated in a way to defeat backtracking (and therefore need more time to be solved), the results give an approximation of the needed time.
+\noindent The tests were done on 21 December 2021, using the version 1.6 of the interface. Although some boards are generated in a way to defeat backtracking (and therefore need more time to be solved), the results give an approximation of the needed time.
 
-\noindent The GitHub repository \url{https://github.com/elioudakis/HRY411_Performance_Analysis} contains the batch file, the file parsing program and the log files produced. The log files are not submitted on eclass, because of their size (8 MB).
+\noindent The GitHub repository \url{https://github.com/elioudakis/HRY411_Performance_Analysis} contains the batch file, the file parsing program, the boards that were solved and the log files produced. On eclass, only the batch file, the program and the command prompt's output is uploaded, to keep the file size low.
 
 \section*{STK500 configuration}
 The STK500 development board we have received has installed the ATmega16L microcontroller, which is fully compatible with the ATmega16 used in Microchip Studio. PORTA is fully functional, and therefore connected to the LEDs. An external crystal of 10MHz is used. Since ISP (In System Programmer) programming mode is used, the following jumpers are mounted:
