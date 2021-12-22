@@ -10,12 +10,14 @@ Kallinteris Andreas (2017030066), Lioudakis Emmanouil (2018030020)
 
 # Description of the submitted files
 The folder "CODE" contains the code developed for the project. 
-"team5final.elf" is the file to download to the STK (produced by compiling the code).
 The folder "STIMULI_FILES" contains the stimuli files used to test the functionality of the program.
 The folder "PUTTY_LOGS" contains the PuTTY logs of three tests on real hardware (more info in the report).
 The folder "PERFORMANCE_ANALYSIS" contains a simple program that measures the solving time of a large number of boards and exports statistic data
     about the performance of the sudoku solver.
 The file "fuses_config.conf" contains the fuses configuration of the STK.
+"team5final.elf" is the file to download to the STK (produced by compiling the code with Microchip Studio).
+"main12.elf" is the preferred file to use, because it has been compiled on linux system, using ver. 11 of g++ (while Microchip studio uses g++ 5.4), 
+therefore it is more optimised by the compiler. When using this, the mean solving time at ultra level is 0.45sec faster than team5final.elf 
 
 # build instructions
 
