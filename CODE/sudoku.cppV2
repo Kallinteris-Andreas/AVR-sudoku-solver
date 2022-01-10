@@ -1,0 +1,226 @@
+/**\file sudoku.cpp
+ * \version 2
+ * \note could not get it to fit in 16K of text 
+ * \brief Contains is a class SUDOKO class which includes a very fast solver
+ * \target x86-64 and AVR8
+ * \author Kallinteris Andreas
+ */
+
+#include <stdint.h>
+#include "LUT.hpp"
+#include "kallinteris.hpp"
+#ifdef AVR
+#else
+#include <cassert>
+#include <iostream>
+#include <cstdint>
+#endif
+
+static const uint8_t empty_cell = 0x00;
+static const auto lenght = 9; //indicate the dimensions
+
+class sudoku{
+	private:
+		uint8_t board[lenght][lenght]; //note should only be filled with 0x1->0x09 & \c empty_cell
+		uint8_t solved_cell_counter; //\brief number of cell with a non \c empty_cell value
+		volatile bool solving_barrier; // Added by elioudakis on 1 Dec. to support B command
+		kallinteris::array<kallinteris::bool_array<9>,9> valid_rows;
+		kallinteris::array<kallinteris::bool_array<9>,9> valid_columns;
+		kallinteris::array<kallinteris::bool_array<9>,9> valid_blocks;
+
+		/**
+		 * \brief checks which value remains
+		 * if cell at {last_row, \c x_cord} is not a \c empty_cell then it it UB
+		 *
+		 * \author Kallinteris Andreas
+		 * \returns the an integer indicating which number is missing from last column in \c x_cord
+		 */
+		[[gnu::pure, nodiscard]]
+		[[gnu::optimize(1)]]
+		uint8_t last_row_possible_value(const uint8_t x_cord){
+			if (x_cord < 0 or x_cord > lenght)
+				__builtin_unreachable();
+
+			const auto y_cord = lenght-1;
+			assert(board[y_cord][x_cord] == empty_cell);
+
+			//return valid value
+			for (auto i = 0; i!=lenght; i++)
+				if (valid_columns[x_cord].get(i) == true)
+					return i+1;
+
+			assert(false);
+			__builtin_unreachable();
+		}
+
+		/**
+		 * \brief finds a solution for all the rows except the last row
+		 * if the board is unsolveable it is UB
+		 * must be called with solve(0)
+		 * \author Kallinteris Andreas
+		 */
+		[[gnu::optimize(3)]]
+		inline bool solve_first_8_rows(const uint8_t start_index = 0){
+			if(solving_barrier == false) // Added by elioudakis on 1 Dec. to support B command
+				return false;
+			
+			if (start_index < 0 or start_index > lenght*(lenght-1))
+				__builtin_unreachable();
+
+			for(int8_t i = start_index; i!=lenght*(lenght-1); i++){
+				#ifdef AVR
+				const uint8_t y_cord = pgm_read_byte(&div_9_LUT[i].first);
+				const uint8_t x_cord = pgm_read_byte(&div_9_LUT[i].second);
+				#else
+				const uint8_t y_cord = i/lenght;
+				const uint8_t x_cord = i%lenght;
+				#endif
+				assert(y_cord == i/lenght and x_cord == i%lenght);
+
+				if (board[y_cord][x_cord] == empty_cell){
+					for (auto k = 0; k!=lenght; k++){
+						if (valid_rows[y_cord].get(k) and valid_columns[x_cord].get(k) and valid_blocks[get_block_index(y_cord, x_cord)].get(k)){//check if possible
+							set_and_allocate(y_cord, x_cord, k+1);
+							//board[y_cord][x_cord] = k+1;
+							solved_cell_counter++;
+							if (solve_first_8_rows(i+1))
+								return true;
+							solved_cell_counter--;
+							//board[y_cord][x_cord] = empty_cell;
+							unset_and_deallocate(y_cord, x_cord);
+						}
+					}
+					return false;
+				}
+			}
+
+			//this place is only reached the board has be solved
+			assert(solved_cell_counter != 0);
+			assert(solved_cell_counter >= lenght*(lenght-1));
+			return true;
+		}
+
+		void solve_last_row(){
+			assert(solved_cell_counter >= lenght*(lenght-1));
+			const auto y_cord = lenght-1;
+			for (auto i = 0; i!=lenght; i++){
+				if (board[y_cord][i] == empty_cell){
+					board[y_cord][i] = last_row_possible_value(i);
+					solved_cell_counter++;
+				}
+			}
+			assert(solved_cell_counter == lenght*lenght);
+		}
+
+
+		[[gnu::optimize(3), gnu::const]]
+		uint8_t get_block_index(const uint8_t y_cord, const uint8_t x_cord){
+			if (y_cord >= lenght or x_cord >= lenght)
+				__builtin_unreachable();
+			return x_cord/3 + (y_cord/3)*3;
+		}
+
+		//indexing physical
+		[[gnu::optimize(3), gnu::always_inline]]
+		void unset_and_deallocate(const uint8_t y_cord, const uint8_t x_cord){
+			const auto block_index = get_block_index(y_cord, x_cord);
+			const auto old_value = board[y_cord][x_cord];
+			valid_rows[y_cord].set(old_value-1, true);
+			valid_columns[x_cord].set(old_value-1, true);
+			valid_blocks[block_index].set(old_value-1, true);
+			board[y_cord][x_cord] = empty_cell;
+		}
+
+		//indexing physical
+		[[gnu::optimize(3), gnu::always_inline]]
+		void set_and_allocate(const uint8_t y_cord, const uint8_t x_cord, const uint8_t value){
+			const auto block_index = get_block_index(y_cord, x_cord);
+			valid_rows[y_cord].set(value-1, false);
+			valid_columns[x_cord].set(value-1, false);
+			valid_blocks[block_index].set(value-1, false);
+			board[y_cord][x_cord] = value;
+		}
+
+	public:
+		void set_cell(const uint8_t y_cord, const uint8_t x_cord, const uint8_t value){
+			const auto nominal_y_cord = y_cord-1;
+			const auto nominal_x_cord = x_cord-1;
+			const auto block_index = get_block_index(nominal_y_cord, nominal_x_cord);
+			/*
+			const auto y_block_base = nominal_y_cord/3 * 3;
+			const auto x_block_base = nominal_x_cord/3 * 3;
+			assert(x_block_base == (nominal_x_cord/3)*3 and y_block_base == (nominal_y_cord/3)*3);
+			*/
+
+			if (board[nominal_y_cord][nominal_x_cord] == empty_cell)
+				solved_cell_counter++;
+			else{
+				const auto old_value = board[nominal_y_cord][nominal_x_cord];
+				//free old one
+				assert(valid_rows[nominal_y_cord].get(old_value-1) == false);
+				assert(valid_columns[nominal_x_cord].get(old_value-1) == false);
+				assert(valid_blocks[block_index].get(old_value-1) == false);
+				unset_and_deallocate(y_cord, x_cord);
+			}
+
+			assert(valid_rows[nominal_y_cord].get(value-1) == true);
+			assert(valid_columns[nominal_x_cord].get(value-1) == true);
+			assert(valid_blocks[block_index].get(value-1) == true);
+			set_and_allocate(y_cord-1, x_cord-1, value);
+		}
+
+		uint8_t get_cell(const uint8_t y_cord, const uint8_t x_cord){
+			const auto nominal_y_cord = y_cord-1;
+			const auto nominal_x_cord = x_cord-1;
+			return board[nominal_y_cord][nominal_x_cord];
+		}
+		uint8_t get_solved_cell_counter(){ return solved_cell_counter;}
+		
+		void set_solving_barrier(const bool new_value){
+			solving_barrier = new_value;
+		}
+		
+		bool get_solving_barrier(){
+			return solving_barrier;
+		}
+
+		/// \brief set all cells to @c empty_cell
+		void clear(){
+			for (auto i = 0; i!=lenght; i++)
+				for (auto j = 0; j!=lenght; j++)
+					board[i][j] = empty_cell;
+			solved_cell_counter = 0;
+			for (auto i = 0; i!=lenght; i++){
+				valid_rows[i].fill(true);
+				valid_columns[i].fill(true);
+				valid_blocks[i].fill(true);
+			}
+		}
+
+		#ifndef AVR
+		void print(){//forked from: https://www.tutorialspoint.com/sudoku-solver-in-cplusplus
+			for (int row = 0; row < lenght; row++){
+				for (int col = 0; col < lenght; col++){
+					if(col == 3 || col == 6)
+						std::cout << " | ";
+					if (board[row][col] != empty_cell)
+						std::cout << (int) board[row][col] <<" ";
+					else
+						std::cout << "- ";
+				}
+				if(row == 2 || row == 5){
+					std::cout << std::endl;
+					for(int i = 0; i<lenght; i++)
+						std::cout << "---";
+				}
+				std::cout << std::endl;
+			}
+		}
+		#endif
+
+		[[gnu::optimize(1)]]
+		void solve(){
+			solve_first_8_rows();
+			solve_last_row();
+		}
+};

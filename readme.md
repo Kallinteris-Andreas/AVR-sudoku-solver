@@ -2,7 +2,7 @@
 ### Course
 ACE411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22 
 ### Authors
-Kallinteris Andreas (2017030066), Lioudakis Emmanouil (2018030020)
+Kallinteris Andreas, Lioudakis Emmanouil
 ### Target Hardware
 [ATmega16](https://www.microchip.com/en-us/product/atmega16) (WARNING: If another device is used, some registers may differ a bit)
 [ATmega16L](https://www.microchip.com/en-us/product/atmega16) - binary compatible with ATmega16
