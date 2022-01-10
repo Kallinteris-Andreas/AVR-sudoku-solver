@@ -10,8 +10,7 @@ ACE411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22
 10 MHz, using an oscillator on STK500 (If changed, `DF_CLK` should be changed also in makefile)
 
 # Description of the submitted files
-The folder "CODE" contains the code developed for the project. 
-"team5final.elf" is the file to download to the STK (produced by compiling the code).
+The folder "CODE" contains the code developed for the project.
 The folder "STIMULI_FILES" contains the stimuli files used to test the functionality of the program.
 The folder "PUTTY_LOGS" contains the PuTTY logs of three tests on real hardware (more info in the report).
 The folder "PERFORMANCE_ANALYSIS" contains a simple program that measures the solving time of a large number of boards and exports statistic data
