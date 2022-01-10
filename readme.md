@@ -2,7 +2,8 @@
 ### Course
 ACE411 - Embedded Microprocessor Systems, Winter Semester of acad. year 2021-22 
 ### Authors
-[Kallinteris Andreas](https://github.com/kallinteris-andreas), [Lioudakis Emmanouil](https://github.com/elioudakis)
+ - [Kallinteris Andreas](https://github.com/kallinteris-andreas) Sudoku Solver
+ - [Lioudakis Emmanouil](https://github.com/elioudakis) Chip Interface
 ### Target Hardware
 [ATmega16](https://www.microchip.com/en-us/product/atmega16) (WARNING: If another device is used, some registers may differ a bit)
 [ATmega16L](https://www.microchip.com/en-us/product/atmega16) - binary compatible with ATmega16
